@@ -7,6 +7,7 @@
 }
 /* Hide scrollbar but allow scroll */
 * {
+	user-select: none;
 	overflow: auto; /* allow scroll */
 	scrollbar-width: none; /* Firefox */
 	-ms-overflow-style: none;  /* IE 10+ */
@@ -32,6 +33,18 @@ html, body {
 }
 button {
 	border: none;
+}
+img {
+	height: 100%;
+	width: 100%;
+}
+input {
+	width: 90%;
+	height: 5vw;
+	border: solid black 0.2vw;
+	border-radius: 3vw;
+	padding: 1vw;
+	margin: 0 5%;
 }
 
 #header {
@@ -64,9 +77,39 @@ button {
 	margin-right: 1vw;
 	color: black;
 	font-weight: 500;
+	font-size: 2vw;
 }
 
 /*common usage*/
+/*text*/
+.semibold {
+	font-weight: 500;
+}
+.bold {
+	font-weight: 700;
+}
+.underline {
+	text-decoration: underline;
+}
+.txtsmall {
+	font-size: 1vw;
+}
+.txtsemimedium {
+	font-size: 1.5vw;
+}
+.txtmedium {
+	font-size: 2vw;
+}
+.txtsemilarge {
+	font-size: 2.5vw;
+}
+.txtlarge {
+	font-size: 3vw;
+}
+.txtgreen {
+	color: #026E2C;
+}
+
 /*color*/
 .white {
 	background: #FFFFFF;
@@ -74,6 +117,7 @@ button {
 .green {
 	background: #026E2C;
 }
+
 /*shape*/
 .circle {
 	border-radius: 50%;
