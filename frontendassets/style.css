@@ -1,0 +1,131 @@
+/* For 16:9 Ratio */
+#ratio16_9 {
+	width: 100vw;
+	background: white;
+	
+	
+}
+/* Hide scrollbar but allow scroll */
+* {
+	overflow: auto; /* allow scroll */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none;  /* IE 10+ */
+}
+*::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Edge */
+}
+
+* {
+	overflow: scroll;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	align-items: center;
+	justify-content: center;
+}
+html, body {
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	font-size: 2vw;
+}
+button {
+	border: none;
+}
+
+#header {
+	position: fixed;
+	width: 100vw;
+	height: 8vw;
+	background: #026E2C;
+	display: flex;
+	flex-flow: row nowrap;
+	top: 0;
+	left: 0;
+}
+#header div {
+	display: flex;
+	flex-flow: row nowrap;
+	height: 100%;
+	font-size: 1.5rem;
+	color: white;
+	font-weight: 500;
+}
+
+.inviBtn {
+	background: rgba(0,0,0,0);
+}
+.signinBtn {
+	background: #FFFFFF;
+	border-radius: 1vw;
+	height: 4vw;
+	width: 12vw;
+	margin-right: 1vw;
+	color: black;
+	font-weight: 500;
+}
+
+/*common usage*/
+/*color*/
+.white {
+	background: #FFFFFF;
+}
+.green {
+	background: #026E2C;
+}
+/*shape*/
+.circle {
+	border-radius: 50%;
+}
+/*size*/
+.small {
+	height: 5vw;
+	width: 5vw;
+}
+.medium {
+	height: 7vw;
+	width: 7vw;
+}
+.large {
+	height: 9vw;
+	width: 9vw;
+}
+/*margin*/
+.smallMarginLeft {
+	margin-left: 1vw;
+}
+.smallMarginRight {
+	margin-right: 1vw;
+}
+
+/*padding*/
+
+/*position*/
+.fixed {
+	position: fixed;
+	z-index: 2;
+}
+.divOnCenter {
+	margin: auto;
+}
+
+/*flex*/
+.flex {
+	flex: 1;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.flexR {
+	display: flex;
+	flex-flow: row;
+	height: 100%;
+}
+.flexC {
+	display: flex;
+	flex-flow: column;
+	width: 100%;
+}
