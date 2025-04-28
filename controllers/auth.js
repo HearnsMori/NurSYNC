@@ -46,7 +46,7 @@ const login = async (req, res) => {
 		//checks whether name or username already exists
 		const username2Exist = await User.findOne({username});
 		if (username2Exist) {
-			let isMatch = password == username2Exist;
+			let isMatch = password == username2Exist.password;
 			console.log(isMatch);
 			if (!isMatch) {
 				return res.status(200).json({'error': 'Password doesn\'t match the account.'});	

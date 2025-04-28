@@ -32,11 +32,15 @@ app.get('/signup', (req, res) => {
 
 //Protected HTML
 app.get('/learninghub', /*authMiddle,*/ (req, res) => {
-	res.sendFile(path.join(__dirname, 'frontendpages', 'learninghub.html'));
+	if(req.userId) {
+		res.sendFile(path.join(__dirname, 'frontendpages', 'learninghub.html'));
+	}
 });
 
 app.get('/lesson', /*authMiddle,*/ (req, res) => {
-	res.sendFile(path.join(__dirname, 'frontendpages', 'lesson.html'));
+	if(req.userId) {
+		res.sendFile(path.join(__dirname, 'frontendpages', 'lesson.html'));
+	}
 });
 
 //Backend part
