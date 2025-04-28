@@ -5,17 +5,319 @@
 			NurSYNC
 		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel-"stylesheet" href="style.css"/>
+		<link rel="stylesheet" href="style.css"/>
+		<link rel="icon" type="image/png" href="logo.png"/>
+		<style>
+#footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: 3;
+	height: auto;
+	padding: 3vw 0;
+	background: #008040;
+	transition: bottom 0.3s ease;
+}
+
+			#footer.hidden {
+				bottom: -100%; /* Hide the footer by moving it off screen */
+			}
+
+			#showFooterButton {
+				position: fixed;
+				bottom: 10px;
+				right: 10px;
+				background: #008040;
+				color: white;
+				padding: 10px;
+				border-radius: 5px;
+				cursor: pointer;
+				z-index: 4;
+			}
+		</style>
 	</head>
 	<body>
-	<div id="ratio16_9">
+		<div id="ratio16_9">
+			<img class="fixed" src="login.png"/>
+			<div class="fixed flexR" style="background: rgba(255,255,255,1); border-radius: 3vw; z-index: 2; margin: 5vh 8vw; width: 84vw; height: 69vw;">
+				<div class="divOnCenter">
+					<img style="opacity: 1; height: 15vw; width: 25vw;" src="greenlettering.png"/>
+				</div>
+				<div class="flexC" style="width: 48vw; margin-right: 11vw;">
+					<div class="txtsemilarge bold" style="margin-top: 1vw;">
+						Create an Account
+					</div>
+					<div class="txtsemimedium semibold" style="margin-top: 1vw;">
+						Already have an Account? <a href="../login">Log-in</a>
+					</div>
+					<div class="flexR" style="padding: 0 1vw; width: 100%; margin-top: 2vw;">
+						<div class="" style="margin-left: 0">
+							<input id="firstname" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="First Name" />
+							<small id="firstname-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+						<div class="">
+							<input id="lastname" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="Last Name" />
+							<small id="lastname-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+						<div class="">
+							<input id="middlename" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="Middle Name" />
+							<small id="middlename-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div class="flexR" style="padding: 0 1vw; width: 100%; margin-top: 2vw;">
+						<div class="">
+							<input id="university" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="University" />
+							<small id="university-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+						<div class="">
+							<input id="studentid" class="txtmedium" style="padding-left: 2vw;" type="number" placeholder="Student ID" />
+							<small id="studentid-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
+						<div class="divOnCenter">
+							<input id="emailaddress" class="txtmedium"  style="padding-left: 2vw;" type="text" placeholder="Email Address"/>
+							<small id="emailaddress-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
+						<div class="divOnCenter">
+							<input id="username" class="txtmedium"  style="padding-left: 2vw;" type="text" placeholder="Username"/>
+							<small id="username-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
+						<div class="divOnCenter">
+							<input id="password" class="txtmedium"  style="padding-left: 2vw;" type="password" placeholder="Password"/>
+							<small id="password-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
+						<div class="divOnCenter">
+							<input id="confirmpassword" class="txtmedium"  style="padding-left: 2vw;" type="password" placeholder="Confirm Password"/>
+							<small id="confirmpassword-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
+						<div class="divOnCenter input flexR">
+							<input id="agree" type="checkbox" class="customcheckbox" style="display: inline;" />
+							<div  class="txtmedium" style="display: inline;">
+								Agree to terms, policy, and privacy 
+							</div>
+						</div>
+						<small id="agree-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						
+					</div>
 
-	</div>
+					<div style="width: 100%; margin-top: 2vw">
+
+						<button type="button" onClick="signup();" class="green txtmedium" style="color: white; width: 90%; height: 5vw; margin: 0 5%; border-radius: 4vw;">
+							Register
+						</button>
+
+					</div>
+
+				</div>
+			</div>
+			<!-- Footer -->
+			<div id="footer" class="flexC green hidden">
+				<!-- Logo or Title -->
+				<div class="flex" style="color: white; justify-content: left; margin-left: 11vw; font-size: 4vw; font-weight: bold;">
+					NurSYNC
+				</div>
+				<!-- Optional Links -->
+				<div class="flex" style="justify-content: left; margin-left: 11vw; margin-top: 3vw;">
+					<a href="../" style="color: #ffffff; text-decoration: none; margin-right: 5vw;">Home</a>
+					<a href="./signup" style="color: #ffffff; text-decoration: none; margin-right: 5vw;">Signup</a>
+					<a style="color: #ffffff; text-decoration: none;" href="https://mail.google.com/mail/?view=cm&fs=1&to=your-email@gmail.com&su=Subject%20Here&body=Message%20Body%20Here" target="_blank">Send me a message</a>
+				</div>
+
+				<!-- Line -->
+				<hr style="border: 0.2px solid #CCCCCC; width: 90%; margin-top: 5vw;"/>
+
+				<!-- Copyright -->
+				<div class="flex" style="color: #dddddd; justify-content: left; margin-left: 11vw; font-size: 2vw; margin-top: 2vw;">
+					&#169; 2025 NurSynergy
+				</div>
+			</div>
+		</div>
+
+		<!-- Sticky Button to Show Footer -->
+		<div id="showFooterButton">Show Footer</div>
+
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<!-- Then your own script -->
 		<script>
-			$(document).ready(function() {
+			function crudData(api, key, keyVal, field, newVal) {
+				const token = localStorage.getItem('token');
+				const refreshToken = localStorage.getItem('refreshToken');
+				fetch(`https://your-ai-endpoint.com/api${api}`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': token,
+						'refreshAuth': refreshToken
+					},
+					body: JSON.stringify({
+						key: key,
+						keyVal: keyVal,
+						field: field,
+						newVal: newVal
+					})
+				})
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) {
+							console.error('Server Error:', data.msg);
+						} else {
+							//data.datatoget
+						}
+					})
+					.catch(error => {
+						console.error('Fetch Error:', error);
+					});
+			}
+			function signup() {
+				var firstname = $('#firstname').val();
+				var lastname = $('#lastname').val();
+				var middlename = $('#middlename').val();
+				var university = $('#university').val();
+				var studentid = $('#studentid').val();
+				var emailaddress = $('#emailaddress').val();
+				var username = $('#username').val();
+				var password = $('#password').val();
+				var confirmpassword = $('#confirmpassword').val();
 				
+				
+				if (!firstname.trim()) {
+					$('#firstname-error').text('First Name must not be empty.').show();
+					return;
+				} else if (firstname.includes(' ')) {
+					$('#firstname-error').text('First Name must not have white space.').show();
+					return;
+				} else if (firstname.length < 2) {
+					$('#firstname-error').text('First Name must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#firstname-error').hide();
+				}
+				
+				if (!lastname.trim()) {
+					$('#lastname-error').text('Last Name must not be empty.').show();
+					return;
+				} else if (lastname.includes(' ')) {
+					$('#lastname-error').text('Last Name must not have white space.').show();
+					return;
+				} else if (lastname.length < 2) {
+					$('#lastname-error').text('Last Name must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#lastname-error').hide();
+				}
+				
+				if (!middlename.trim()) {
+					$('#middlename-error').text('Middle Name must not be empty.').show();
+					return;
+				} else if (middlename.includes(' ')) {
+					$('#middlename-error').text('Middle Name must not have white space.').show();
+					return;
+				} else if (middlename.length < 2) {
+					$('#middlename-error').text('Middle Name must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#middlename-error').hide();
+				}
+				
+				
+				
+				if (!username.trim()) {
+					$('#username-error').text('Username must not be empty.').show();
+					return;
+				} else if (username.includes(' ')) {
+					$('#username-error').text('Username must not have white space.').show();
+					return;
+				} else if (username.length < 2) {
+					$('#username-error').text('Username must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#username-error').hide();
+				}
+				
+				if (!password.trim()) {
+					$('#password-error').text('Password must not be empty.').show();
+					return;
+				} else if (password.includes(' ')) {
+					$('#password-error').text('Password must not have white space.').show();
+					return;
+				} else if (password.length < 2) {
+					$('#password-error').text('Password must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#password-error').hide();
+				}
+				
+				if (!password) {
+					$('#password-error').text('Password must not be empty').show();
+					return
+				} else if (!confirmpassword) {
+					$('#confirmpassword-error').text('Confirm Password must match your password.').show();
+					return;
+				} else if (password != confirmpassword ) {
+					$('#confirmpassword-error').text('Confirm Password does not match the password.').show();
+					return;
+				} else {
+					$('#password-error').hide();
+					$('#confirmpassword-error').hide();
+				}
+				
+				if (!($('#agree').is(':checked'))) {
+					$('#agree-error').text('To start user must agree to the terms, policy, and privacy of the application.').show();
+					return
+				} else {
+					$('#agree-error').hide();
+				}
+				
+				fetch(`https://nursync.onrender.com/api/auth/signup`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						firstname,
+						lastname,
+						middlename,
+						university, 
+						studentid,
+						emailaddress,
+						username,
+						password
+					})
+				})
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) {
+							alert(data.msg);
+						} else {
+							alert("Successfully created an Account. You may now Log-in."
+							window.location.href = '../login';
+						}
+					})
+					.catch(error => {
+						alert('Fetch Error: Try Again.');
+					});
+			}
+			// Function to toggle footer visibility
+			$(document).ready(function() {
+
+				$('#showFooterButton').click(function() {
+					$('#footer').toggleClass('hidden');
+					// Change button text based on footer visibility
+					if ($('#footer').hasClass('hidden')) {
+						$('#showFooterButton').text('Show Footer');
+					} else {
+						$('#showFooterButton').text('Hide Footer');
+					}
+
+				});
 			});
 		</script>
 	</body>

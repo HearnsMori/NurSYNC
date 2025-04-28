@@ -60,9 +60,12 @@ app.use(express.urlencoded({ extended: true}));
 app.use('/serverstorage', express.static('./serverstorage'));
 
 app.use('/api/auth', require('./routes/auth'));
+
 app.use('/api/user', require('./routes/user'));
-app.use('/api/flashcard', require('./routes/flashcard'));
-app.use('/api/note', require('./routes/note'));
+app.use('/api/task', require('./routes/task'));
+app.use('/api/flashcardquiz', require('./routes/flashcardquiz'));
+app.use('/api/courses', require('./routes/courses'));
+app.use('/api/notes', require('./routes/notes'));
 
 //Connecting to Database
 const { MongoClient, ServerApiVersion } = require('mongodb');

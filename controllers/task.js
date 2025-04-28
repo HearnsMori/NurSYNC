@@ -1,4 +1,4 @@
-const Schema = require('../models/Schema');
+const Task = require('../models/Task');
 const jwt = require('jsonwebtoken');
 
 const buildQuery = (keys, values) => {
@@ -27,7 +27,7 @@ const create = async (req, res) => {
     return res.status(400).json({ error: 'Keys/keyVals and fields/newVals must match in length.' });
   }
   try {
-    if (!req.userId) {
+    if (!req.taskId) {
       return res.status(401).json({ error: 'Token expired. Login again.' });
     }
     // Prevent creation of secured fields
@@ -40,18 +40,18 @@ const create = async (req, res) => {
     // Construct object for creation
     const newDoc = {};
     key.forEach((k, i) => {
-      newDoc[k] = String(keyVal[i]).toLowerCase() === 'self' ? req.userId : keyVal[i];
+      newDoc[k] = String(keyVal[i]).toLowerCase() === 'self' ? req.taskId : keyVal[i];
     });
     field.forEach((f, i) => {
       newDoc[f] = newVal[i];
     });
     // Save to database
-    const schema = await Schema.create(newDoc);
+    const task = await Task.create(newDoc);
     console.log('Created Document:', created); // Debug log
-    res.status(201).json({ msg: 'Schema created successfully.', id: created._id });
+    res.status(201).json({ msg: 'Task created successfully.', id: created._id });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Server error. Could not create schema.' });
+    res.status(500).json({ error: 'Server error. Could not create task.' });
   }
 };
 
@@ -64,13 +64,13 @@ const read = async (req, res) => {
   let { key, keyVal, field, newVal } = req.body;
   try {
     console.log('Request Body:', req.body); // Debug log
-    if (!req.userId) {
+    if (!req.taskId) {
       return res.status(401).json({ error: 'Token expired. Login Again.' });
     }
     key = Array.isArray(key) ? key : [key];
     keyVal = Array.isArray(keyVal) ? keyVal : [keyVal];
     field = Array.isArray(field) ? field : [field];
-    keyVal = keyVal.map(v => (v.toLowerCase() === 'self' ? req.userId : v));
+    keyVal = keyVal.map(v => (v.toLowerCase() === 'self' ? req.taskId : v));
     console.log('key:', key, 'keyVal:', keyVal); // Debug log
     const notAllowedFields = [];
     if (field.some(f => notAllowedFields.includes(f))) {
@@ -78,9 +78,9 @@ const read = async (req, res) => {
     }
     const query = buildQuery(key, keyVal);
     console.log('Built Query:', query); // Debug log
-    const schema = await Schema.find(query).select(field.join(' '));
+    const task = await Task.find(query).select(field.join(' '));
     console.log('Found Data:', data); // Debug log
-    const stack = schema.map(doc => {
+    const stack = task.map(doc => {
       let obj = {};
       field.forEach(f => {
         obj[f] = doc[f];
@@ -107,7 +107,7 @@ const update = async (req, res) => {
   if (field.length !== newVal.length) {                                                                                   return res.status(400).json({ error: 'Fields and newVals must be arrays of the same length.' });
   }                                                                                                                     console.log('key:', key, 'keyVal:', keyVal); // Debug log
   try {
-    if (!req.userId) {
+    if (!req.taskId) {
       return res.status(401).json({ error: 'Token expired. Login again.' });
     }
     const notAllowedFields = [];                                                                                          for (let col of field) {
@@ -116,13 +116,13 @@ const update = async (req, res) => {
       }
     }
     const query = buildQuery(key, keyVal);
-    const schema = await Schema.findOne(query);
+    const task = await Task.findOne(query);
     console.log('App found:', app); // Debug log
-    if (!schema) {
+    if (!task) {
       return res.status(404).json({ error: `No app found with given keys.` });
     }
     field.forEach((col, i) => {
-      schema[col] = newVal[i];
+      task[col] = newVal[i];
     });
     await app.save();
     res.status(200).json({ msg: 'Fields updated successfully.' });
@@ -152,15 +152,15 @@ const deletE = async (req, res) => {
   });
   console.log('Built Query:', query); // Debug log
   try {
-    if (!req.userId) {
+    if (!req.taskId) {
       return res.status(401).json({ error: 'Token expired. Login again.' });
     }
-    const schema = await Schema.findOne(query);
+    const task = await Task.findOne(query);
     console.log('App found:', app); // Debug log
-    if (!schema) {
+    if (!task) {
       return res.status(404).json({ error: `No app found with given keys.` });
     }
-    await Schema.deleteOne(query);
+    await Task.deleteOne(query);
     res.status(200).json({ msg: 'App deleted successfully.' });
   } catch (err) {
     console.error(err);

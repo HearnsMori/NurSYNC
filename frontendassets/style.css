@@ -38,19 +38,24 @@ img {
 	height: 100%;
 	width: 100%;
 }
-input {
-	width: 90%;
+input, .input{
+	width: 95%;
 	height: 5vw;
 	border: solid black 0.2vw;
-	border-radius: 3vw;
+	border-radius: 2vw;
 	padding: 1vw;
-	margin: 0 5%;
+	margin: 0 2.5%;
+	
+}
+li {
+	padding: 0vw;
+	margin: 0vw;
 }
 
 #header {
 	position: fixed;
 	width: 100vw;
-	height: 8vw;
+	height: 6vw;
 	background: #026E2C;
 	display: flex;
 	flex-flow: row nowrap;
@@ -172,4 +177,15 @@ input {
 	display: flex;
 	flex-flow: column;
 	width: 100%;
+}
+
+/*custom*/
+.customcheckbox {
+	display: inline;
+	position: relative;
+  width: 3vw;
+  height: 3vw;
+  border: 0.2vw solid #000;
+  border-radius: 1vw;
+  cursor: pointer;
 }

@@ -1,4 +1,4 @@
-const Schema = require('../models/Schema');
+const Courses = require('../models/Courses');
 const jwt = require('jsonwebtoken');
 
 const buildQuery = (keys, values) => {
@@ -46,12 +46,12 @@ const create = async (req, res) => {
       newDoc[f] = newVal[i];
     });
     // Save to database
-    const schema = await Schema.create(newDoc);
+    const courses = await Courses.create(newDoc);
     console.log('Created Document:', created); // Debug log
-    res.status(201).json({ msg: 'Schema created successfully.', id: created._id });
+    res.status(201).json({ msg: 'Courses created successfully.', id: created._id });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Server error. Could not create schema.' });
+    res.status(500).json({ error: 'Server error. Could not create courses.' });
   }
 };
 
@@ -78,9 +78,9 @@ const read = async (req, res) => {
     }
     const query = buildQuery(key, keyVal);
     console.log('Built Query:', query); // Debug log
-    const schema = await Schema.find(query).select(field.join(' '));
+    const courses = await Courses.find(query).select(field.join(' '));
     console.log('Found Data:', data); // Debug log
-    const stack = schema.map(doc => {
+    const stack = courses.map(doc => {
       let obj = {};
       field.forEach(f => {
         obj[f] = doc[f];
@@ -116,13 +116,13 @@ const update = async (req, res) => {
       }
     }
     const query = buildQuery(key, keyVal);
-    const schema = await Schema.findOne(query);
+    const courses = await Courses.findOne(query);
     console.log('App found:', app); // Debug log
-    if (!schema) {
+    if (!courses) {
       return res.status(404).json({ error: `No app found with given keys.` });
     }
     field.forEach((col, i) => {
-      schema[col] = newVal[i];
+      courses[col] = newVal[i];
     });
     await app.save();
     res.status(200).json({ msg: 'Fields updated successfully.' });
@@ -155,12 +155,12 @@ const deletE = async (req, res) => {
     if (!req.userId) {
       return res.status(401).json({ error: 'Token expired. Login again.' });
     }
-    const schema = await Schema.findOne(query);
+    const courses = await Courses.findOne(query);
     console.log('App found:', app); // Debug log
-    if (!schema) {
+    if (!courses) {
       return res.status(404).json({ error: `No app found with given keys.` });
     }
-    await Schema.deleteOne(query);
+    await Courses.deleteOne(query);
     res.status(200).json({ msg: 'App deleted successfully.' });
   } catch (err) {
     console.error(err);

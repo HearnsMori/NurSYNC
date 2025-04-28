@@ -8,16 +8,16 @@
 		<link rel="stylesheet" href="style.css"/>
 		<link rel="icon" type="image/png" href="logo.png"/>
 		<style>
-			#footer {
-				position: fixed;
-				bottom: 0;
-				width: 100%;
-				z-index: 3;
-				height: auto;
-				padding: 3vw 0;
-				background: #008040;
-				transition: bottom 0.3s ease;
-			}
+#footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: 3;
+	height: auto;
+	padding: 3vw 0;
+	background: #008040;
+	transition: bottom 0.3s ease;
+}
 
 			#footer.hidden {
 				bottom: -100%; /* Hide the footer by moving it off screen */
@@ -52,23 +52,25 @@
 					</div>
 					<div style="width: 100%; margin-top: 2vw;">
 						<div class="divOnCenter">
-							<input class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="Username" />
+							<input id="username" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="Username" />
+							<small id="username-error" style="padding: 0 1vw; color: red; display: none;"></small>
 						</div>
 					</div>
 					<div style="width: 100%; margin-top: 1vw">
 						<div class="divOnCenter">
-							<input class="txtmedium"  style="padding-left: 2vw;" type="password" placeholder="Password"/>
+							<input id="password" class="txtmedium"  style="padding-left: 2vw;" type="password" placeholder="Password"/>
+							<small id="password-error" style="padding: 0 1vw; color: red; display: none;"></small>
 						</div>
 					</div>
 					<div class="txtsemimedium" style="margin-top: 1vw;">
 						Forgot Password?
 					</div>
 					<div style="width: 100%; margin-top: 2vw">
-						
-							<button class="green txtmedium" style="color: white; width: 90%; height: 5vw; margin: 0 5%; border-radius: 4vw;">
-								Log-in
-							</button>
-						
+
+						<button onClick="login();" class="green txtmedium" style="color: white; width: 90%; height: 5vw; margin: 0 5%; border-radius: 4vw;">
+							Log-in
+						</button>
+
 					</div>
 					<div class="txtmedium" style="margin: 1vw 0">
 						or
@@ -120,8 +122,96 @@
 
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
+			function crudData(api, key, keyVal, field, newVal) {
+				const token = localStorage.getItem('token');
+				const refreshToken = localStorage.getItem('refreshToken');
+				fetch(`https://your-ai-endpoint.com/api${api}`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': token,
+						'refreshAuth': refreshToken
+					},
+					body: JSON.stringify({
+						key: key,
+						keyVal: keyVal,
+						field: field,
+						newVal: newVal
+					})
+				})
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) {
+							alert(data.msg);
+						} else {
+							const token = data.token;
+							const refreshToken = data.refreshToken;
+							localStorage.setItem("token", token);
+							localStorage.setItem("refreshToken", refreshToken);
+						}
+					})
+					.catch(error => {
+						console.error('Fetch Error:', error);
+					});
+			}
+			function login() {
+				//alert('clicked');
+				var username = $('#username').val();
+				var password = $('#password').val();
+				alert(username);
+				if (!username.trim()) {
+					$('#username-error').text('Username must not be empty.').show();
+					return;
+				} else if (username.includes(' ')) {
+					$('#username-error').text('Username must not have white space.').show();
+					return;
+				} else if (username.length < 2) {
+					$('#username-error').text('Username must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#username-error').hide();
+				}
+
+
+				if (!password.trim()) {
+					$('#password-error').text('Password must not be empty.').show();
+					return;
+				} else if (password.includes(' ')) {
+					$('#password-error').text('Password must not have white space.').show();
+					return;
+				} else if (password.length < 2) {
+					$('#password-error').text('Password must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#username-error').hide();
+				}
+
+
+				fetch(`https://nursync.onrender.com/api/auth/login`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						username,
+						password
+					})
+				})
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) {
+							alert(data.msg);
+						} else {
+							//data.datatoget
+						}
+					})
+					.catch(error => {
+						alert('Fetch Error: Try Again.');
+					});
+			}
 			// Function to toggle footer visibility
 			$(document).ready(function() {
+
 				$('#showFooterButton').click(function() {
 					$('#footer').toggleClass('hidden');
 					// Change button text based on footer visibility

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const protect = require('../middles/authMiddle');
-const controllers = require('../controllers/user');
+const controllers = require('../controllers/courses');
 
 router.post('/create', protect, controllers.create);
 router.post('/read', protect, controllers.read);

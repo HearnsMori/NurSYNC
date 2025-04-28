@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const Notes = require('../models/Notes');
 const jwt = require('jsonwebtoken');
 
 const buildQuery = (keys, values) => {
@@ -46,12 +46,12 @@ const create = async (req, res) => {
       newDoc[f] = newVal[i];
     });
     // Save to database
-    const user = await User.create(newDoc);
+    const notes = await Notes.create(newDoc);
     console.log('Created Document:', created); // Debug log
-    res.status(201).json({ msg: 'User created successfully.', id: created._id });
+    res.status(201).json({ msg: 'Notes created successfully.', id: created._id });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Server error. Could not create user.' });
+    res.status(500).json({ error: 'Server error. Could not create notes.' });
   }
 };
 
@@ -78,9 +78,9 @@ const read = async (req, res) => {
     }
     const query = buildQuery(key, keyVal);
     console.log('Built Query:', query); // Debug log
-    const user = await User.find(query).select(field.join(' '));
+    const notes = await Notes.find(query).select(field.join(' '));
     console.log('Found Data:', data); // Debug log
-    const stack = user.map(doc => {
+    const stack = notes.map(doc => {
       let obj = {};
       field.forEach(f => {
         obj[f] = doc[f];
@@ -116,13 +116,13 @@ const update = async (req, res) => {
       }
     }
     const query = buildQuery(key, keyVal);
-    const user = await User.findOne(query);
+    const notes = await Notes.findOne(query);
     console.log('App found:', app); // Debug log
-    if (!user) {
+    if (!notes) {
       return res.status(404).json({ error: `No app found with given keys.` });
     }
     field.forEach((col, i) => {
-      user[col] = newVal[i];
+      notes[col] = newVal[i];
     });
     await app.save();
     res.status(200).json({ msg: 'Fields updated successfully.' });
@@ -155,12 +155,12 @@ const deletE = async (req, res) => {
     if (!req.userId) {
       return res.status(401).json({ error: 'Token expired. Login again.' });
     }
-    const user = await User.findOne(query);
+    const notes = await Notes.findOne(query);
     console.log('App found:', app); // Debug log
-    if (!user) {
+    if (!notes) {
       return res.status(404).json({ error: `No app found with given keys.` });
     }
-    await User.deleteOne(query);
+    await Notes.deleteOne(query);
     res.status(200).json({ msg: 'App deleted successfully.' });
   } catch (err) {
     console.error(err);

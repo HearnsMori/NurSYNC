@@ -1,0 +1,53 @@
+Auth:
+	Authroization: token
+	refreshAuth: refreshToken
+	req.userId =  true
+	req.newToken = if new token
+
+Models:
+	User:
+		username
+		profilepic //server
+		password
+		firstname
+		lastname
+		middlename
+		university
+		studentid
+		emailaddress
+		aboutme
+		country
+		cityortown
+		coursesclicked
+	FlashcardQuiz:
+		username
+		term
+		content
+		category
+	Task:
+		deadline
+		finished
+		/*category
+		icon
+		color
+		title
+		*/
+	Courses: //Server
+		username
+		level
+		title
+		aaa
+		sem
+		progress
+	Notes: //Server
+		username
+		courses
+		url
+		clicked
+		
+
+
+Controllers:
+	CRUD for each models
+
+
