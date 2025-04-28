@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<div id="ratio16_9">
-			<div class="flexR fixed" style="height: 12vw; top: -1.2vw; left: 5vw; ">
+			<div class="flexR fixed" style="height: 12vw; top: -1.2vw; left: 5vw; z-index: 3">
 				<div style="width: 10vw; margin-top: 2vw;">
 					<img class="circle medium" style="background: white; border: solid white 0.3vw;" src="logo.png">
 				</div>
@@ -22,16 +22,32 @@
 					<img style="height: 8vw; width: 17vw;" src="./lettering.png"/>
 				</div>
 			</div>
-			<div id="header" class="green"> 
+			<div id="header" class="green" style="z-index: 2;"> 
 				<div class="flex">
 
 				</div>
-				<div>
-
+				<div class="flexR">
+					<div class="bold" style="background: green; font-size: 1.2vw; width: 11vw; border-bottom: solid 0.2vw grey; margin-bottom: 1.5vw; padding-top: 2vw">
+						Learning Hub
+					</div>
+					<div onClick="window.location.href = '../task';" style="font-size: 1.2vw; width: 11vw;">
+						Task
+					</div>
+					<div onClick="window.location.href = '../flashcard';" style="font-size: 1.2vw; width: 11vw;">
+						Flashcard
+					</div>
+					<div onClick="window.location.href = '../myself';" style="font-size: 1.2vw; width: 11vw;">
+						Myself
+					</div>
 				</div>
 				<div>
 					<button class="inviBtn smallMarginRight">
 						<svg fill="#FFFFFF" height="4vw" width="4vw" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-126.98 -126.98 742.36 742.36" xml:space="preserve" stroke="#FFFFFF" stroke-width="48.839999999999996"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M0,203.25c0,112.1,91.2,203.2,203.2,203.2c51.6,0,98.8-19.4,134.7-51.2l129.5,129.5c2.4,2.4,5.5,3.6,8.7,3.6 s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-129.6-129.5c31.8-35.9,51.2-83,51.2-134.7c0-112.1-91.2-203.2-203.2-203.2 S0,91.15,0,203.25z M381.9,203.25c0,98.5-80.2,178.7-178.7,178.7s-178.7-80.2-178.7-178.7s80.2-178.7,178.7-178.7 S381.9,104.65,381.9,203.25z"></path> </g> </g> </g></svg>
+					</button>
+				</div>
+				<div>
+					<button class="signinBtn smallMarginRight" style="background: #ed3737; color: white" onClick="localStorage.clear(); window.location.href='../';">
+						Log-out
 					</button>
 				</div>
 			</div>

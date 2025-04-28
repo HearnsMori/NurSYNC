@@ -337,7 +337,13 @@
 			}
 			// Function to toggle footer visibility
 			$(document).ready(function() {
-
+				const all = $('body');
+				if (localStorage.getItem('token')) {
+					all.hide();
+					window.location.href = '../'
+				} else {
+					
+				}
 				$('#showFooterButton').click(function() {
 					$('#footer').toggleClass('hidden');
 					// Change button text based on footer visibility

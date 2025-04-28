@@ -240,7 +240,17 @@
 				window.location.href = page;
 			}
 			$(document).ready(function() {
-
+				const all = $('body');
+				if (localStorage.getItem('token')) {
+					all.hide();
+				} else {
+					var bodyContent = `
+					<body>
+						Helfubsb
+					</body>
+					`;
+					$('head').after(bodyContent);
+				}
 			});
 		</script>
 	</body>

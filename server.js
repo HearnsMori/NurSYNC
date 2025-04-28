@@ -74,6 +74,19 @@ app.get('/lesson', (req, res) => {
 	res.sendFile(path.join(__dirname, 'frontendpages', 'lesson.html'));
 });
 
+app.get('/task', (req, res) => {	
+	res.sendFile(path.join(__dirname, 'frontendpages', 'task.html'));
+});
+
+app.get('/flashcard', (req, res) => {	
+	res.sendFile(path.join(__dirname, 'frontendpages', 'flashcard.html'));
+});
+
+app.get('/myself', (req, res) => {	
+	res.sendFile(path.join(__dirname, 'frontendpages', 'myself.html'));
+});
+
+
 //Backend part
 
 app.use(session({

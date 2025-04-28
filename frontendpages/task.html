@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			NurSYNC
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="style.css"/>
+		<link rel="icon" type="image/png" href="logo.png"/>
+		<style>
+
+		</style>
+
+	</head>
+	<body>
+		<div id="ratio16_9">
+			<div class="flexR fixed" style="height: 12vw; top: -1.2vw; left: 5vw; z-index: 3">
+				<div style="width: 10vw; margin-top: 2vw;">
+					<img class="circle medium" style="background: white; border: solid white 0.3vw;" src="logo.png">
+				</div>
+				<div class="flexC" style="justify-content: left; align-items: left; ">
+					<img style="height: 8vw; width: 17vw;" src="./lettering.png"/>
+				</div>
+			</div>
+			<div id="header" class="green" style="z-index: 2;"> 
+				<div class="flex">
+
+				</div>
+				<div class="flexR">
+					
+					<div onClick="window.location.href = '../learninghub';" style="font-size: 1.2vw; width: 11vw;">
+						Learning Hub
+					</div>
+					<div class="bold" style="background: green; font-size: 1.2vw; width: 11vw; border-bottom: solid 0.2vw grey; margin-bottom: 1.5vw; padding-top: 2vw">
+						Task
+					</div>
+					<div onClick="window.location.href = '../flashcard';" style="font-size: 1.2vw; width: 11vw;">
+						Flashcard
+					</div>
+					<div onClick="window.location.href = '../myself';" style="font-size: 1.2vw; width: 11vw;">
+						Myself
+					</div>
+				</div>
+				<div>
+					<button class="inviBtn smallMarginRight">
+						<svg fill="#FFFFFF" height="4vw" width="4vw" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-126.98 -126.98 742.36 742.36" xml:space="preserve" stroke="#FFFFFF" stroke-width="48.839999999999996"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M0,203.25c0,112.1,91.2,203.2,203.2,203.2c51.6,0,98.8-19.4,134.7-51.2l129.5,129.5c2.4,2.4,5.5,3.6,8.7,3.6 s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-129.6-129.5c31.8-35.9,51.2-83,51.2-134.7c0-112.1-91.2-203.2-203.2-203.2 S0,91.15,0,203.25z M381.9,203.25c0,98.5-80.2,178.7-178.7,178.7s-178.7-80.2-178.7-178.7s80.2-178.7,178.7-178.7 S381.9,104.65,381.9,203.25z"></path> </g> </g> </g></svg>
+					</button>
+				</div>
+				<div>
+					<button class="signinBtn smallMarginRight" style="background: #ed3737; color: white" onClick="localStorage.clear(); window.location.href='../';">
+						Log-out
+					</button>
+				</div>
+			</div>
+			<div class="flexC" style="margin-top: 11vw;">
+				<div class="txtlarge bold">
+					Task
+				</div>
+				
+
+<div style="font-family: Arial, sans-serif; max-width: 900px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background: #fff;">
+  
+  <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
+    <button onclick="filterTasks('today')" id="btn-today" style="padding: 10px 20px; border: 1px solid #ccc; background: #f0f0f0; border-radius: 5px; cursor: pointer;">Today</button>
+    <button onclick="filterTasks('tomorrow')" id="btn-tomorrow" style="padding: 10px 20px; border: 1px solid #ccc; background: #f0f0f0; border-radius: 5px; cursor: pointer;">Due Tomorrow</button>
+    <button onclick="filterTasks('all')" id="btn-all" style="padding: 10px 20px; border: 1px solid #ccc; background: #f0f0f0; border-radius: 5px; cursor: pointer;">View All</button>
+    <input type="date" id="calendar" onchange="calendarFilter()" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+  </div>
+
+  <div style="margin-bottom: 20px;">
+    <div style="margin-bottom: 5px;">My Progress:</div>
+    <div style="background: #eee; width: 100%; height: 20px; border-radius: 10px; overflow: hidden;">
+      <div id="progress-bar" style="background: #4CAF50; height: 100%; width: 0%;"></div>
+    </div>
+    <small id="progress-text" style="color: gray;">0% complete</small>
+  </div>
+
+  <div id="task-list" style="display: flex; flex-direction: column; gap: 15px;">
+    <!-- Tasks will appear here -->
+  </div>
+
+</div>
+
+<script>
+  const tasks = [
+    {
+      deadline: Date.now(),
+      finished: false,
+      content: "aaa",
+      icon: 1,
+      color: "#4CAF50",
+      title: "aaa"
+    },
+    {
+      deadline: Date.now() + 86400000,
+      finished: true,
+      content: "aaa",
+      icon: 2,
+      color: "#2196F3",
+      title: "aaa"
+    },
+    {
+      deadline: Date.now() + 2*86400000,
+      finished: false,
+      content: "aaa",
+      icon: 3,
+      color: "#FF9800",
+      title: "aaa"
+    }
+  ];
+
+  function renderTasks(taskArray, groupByDate = false) {
+    const taskList = document.getElementById('task-list');
+    taskList.innerHTML = '';
+
+    if (groupByDate) {
+      const groups = {};
+      taskArray.forEach(task => {
+        const dateStr = new Date(task.deadline).toLocaleDateString();
+        if (!groups[dateStr]) groups[dateStr] = [];
+        groups[dateStr].push(task);
+      });
+
+      Object.keys(groups).sort().forEach(dateStr => {
+        const dateTitle = document.createElement('h2');
+        dateTitle.textContent = dateStr;
+        dateTitle.style = "margin-top:20px; margin-bottom:10px; font-size:22px;";
+        taskList.appendChild(dateTitle);
+
+        groups[dateStr].forEach(task => {
+          taskList.appendChild(createTaskDiv(task));
+        });
+      });
+    } else {
+      taskArray.forEach(task => {
+        taskList.appendChild(createTaskDiv(task));
+      });
+    }
+
+    updateProgress(taskArray);
+  }
+
+  function createTaskDiv(task) {
+    const taskDiv = document.createElement('div');
+    taskDiv.style = "display: flex; align-items: center; gap: 15px; padding: 10px; border: 1px solid #ccc; border-radius: 8px;";
+
+    const iconDiv = document.createElement('div');
+    iconDiv.style = `width: 40px; height: 40px; background: ${task.color}; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px;`;
+    iconDiv.textContent = task.icon || 'aaa';
+
+    const infoDiv = document.createElement('div');
+    infoDiv.style = "flex-grow: 1;";
+    const title = document.createElement('h3');
+    title.style = "margin: 0 0 5px 0; font-size: 20px;";
+    title.textContent = task.title || 'aaa';
+
+    const content = document.createElement('p');
+    content.style = "margin: 0 0 5px 0;";
+    content.textContent = task.content || 'aaa';
+    if (task.finished) {
+      content.style.textDecoration = "underline";
+    }
+
+    const deadline = document.createElement('small');
+    deadline.style = "color: gray;";
+    deadline.textContent = "Deadline: " + new Date(task.deadline).toLocaleDateString();
+
+    infoDiv.appendChild(title);
+    infoDiv.appendChild(content);
+    infoDiv.appendChild(deadline);
+
+    const checkboxDiv = document.createElement('div');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = task.finished;
+    checkbox.style = "transform: scale(1.5); cursor: pointer;";
+    checkbox.onchange = function() {
+      task.finished = checkbox.checked;
+      if (checkbox.checked) {
+        content.style.textDecoration = "underline";
+      } else {
+        content.style.textDecoration = "none";
+      }
+      updateProgress(tasks);
+    };
+
+    checkboxDiv.appendChild(checkbox);
+
+    taskDiv.appendChild(iconDiv);
+    taskDiv.appendChild(infoDiv);
+    taskDiv.appendChild(checkboxDiv);
+
+    return taskDiv;
+  }
+
+  function filterTasks(mode) {
+    const now = new Date();
+    if (mode === 'today') {
+      const todayTasks = tasks.filter(task => {
+        const taskDate = new Date(task.deadline);
+        return taskDate.toDateString() === now.toDateString();
+      });
+      renderTasks(todayTasks);
+    } else if (mode === 'tomorrow') {
+      const tomorrow = new Date();
+      tomorrow.setDate(now.getDate() + 1);
+      const tomorrowTasks = tasks.filter(task => {
+        const taskDate = new Date(task.deadline);
+        return taskDate.toDateString() === tomorrow.toDateString();
+      });
+      renderTasks(tomorrowTasks);
+    } else if (mode === 'all') {
+      renderTasks(tasks, true);
+    }
+  }
+
+  function calendarFilter() {
+    const selected = document.getElementById('calendar').value;
+    if (!selected) return;
+    const selectedDate = new Date(selected);
+    const filtered = tasks.filter(task => {
+      const taskDate = new Date(task.deadline);
+      return taskDate.getFullYear() === selectedDate.getFullYear() &&
+             taskDate.getMonth() === selectedDate.getMonth() &&
+             taskDate.getDate() === selectedDate.getDate();
+    });
+    renderTasks(filtered);
+  }
+
+  function updateProgress(taskArray) {
+    const total = taskArray.length;
+    const finished = taskArray.filter(t => t.finished).length;
+    const percent = total === 0 ? 0 : Math.round((finished / total) * 100);
+
+    document.getElementById('progress-bar').style.width = percent + '%';
+    document.getElementById('progress-text').textContent = percent + '% complete';
+  }
+
+  // Initial load
+  filterTasks('today');
+</script>
+
+
+
+			</div>
+			<div class="flexC green" style="margin-top: 3vw; height: auto; padding: 5vw 0; background: #008040;">
+				<!-- Logo or Title -->
+				<div class="flex" style="color: white; justify-content: left; margin-left: 11vw; font-size: 5vw; font-weight: bold;">
+					NurSYNC
+				</div>
+
+
+
+
+				<!-- Line -->
+				<hr style="border: 0.2px solid #CCCCCC; width: 90%; margin-top: 5vw;"/>
+
+				<!-- Extra Info: Company Address or Slogan -->
+				<div class="flex" style="color: #dddddd; justify-content: left; margin-left: 11vw; font-size: 3vw; margin-top: 2vw;">
+					<span>Philippines</span>
+				</div>
+
+				<!-- Copyright -->
+				<div class="flex" style="color: #dddddd; justify-content: left; margin-left: 11vw; font-size: 3vw; margin-top: 2vw;">
+					&#169; 2025 NurSYNC
+				</div>
+			</div>
+
+
+		</div>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<!-- Then your own script -->
+		<script>
+
+			function nav(page) {
+				window.location.href = page;
+				
+			}
+			$(document).ready(function() {
+				const all = $('body');
+				if (!localStorage.getItem('token')) {
+					all.hide();
+					nav('../');
+				} else {
+					
+				}
+				
+			});
+		</script>
+	</body>
+</html>

@@ -84,6 +84,13 @@ li {
 	font-weight: 500;
 	font-size: 2vw;
 }
+.userMessage {
+	justify-content: right;
+	background: green;
+	color: white;
+	border-radius: 0.4vw;
+	padding-left: 0.5vw;
+}
 .filter div {
 	margin: 1vw 2vw;
 }
