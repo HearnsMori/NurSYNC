@@ -85,13 +85,14 @@ const verify = async (req, res) => {
 
 const recover = async (req, res) => {
 	console.log("recover");
-	const {username, emailaddress} = req.body;
+	const {username, emailaddress, password} = req.body;
 	try {
-		const account = await Email.findOne({username});
+		const account = await User.findOne({username});
 		if(!account) {
 			res.status(200).json({'error': `No account with username ${username} found.`});
-		} else if(account.email1 == email1 || account.email2 == email1 || account.email3 == email1) {
-			res.status(200).json({'error': 'Account found, but account recovery of forgotten password are not yet available.'});
+		} else if(account.emailaddress == emailaddress) {
+			account.password = password;
+			await account.save();
 		} else {
 			res.status(200).json({'error': `Unable to find email ${email1} to ${username} account.`});
 		}

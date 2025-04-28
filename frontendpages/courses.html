@@ -97,6 +97,7 @@
 					const data = await response.json();
 					appendMessage(data.msg, 'bot');
 				} catch (error) {
+					alert(error);
 					appendMessage("Error: Unable to get response from AI", 'bot');
 				}
 			}

@@ -18,7 +18,7 @@ async function nurSyncLearningBot(prompt) {
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     // Add a prompt context that guides the bot to respond as a learning assistant
-    const learningContextPrompt = `You are NurSYNC AI, an intelligent assistant designed to help users learn and answer questions related to education, self-improvement, and knowledge especially for Nursing Related. Respond to the user's query in a way that encourages learning, understanding, and knowledge-sharing. Keep your answers clear, supportive, and educational.`;
+    const learningContextPrompt = `You are NurSYNC AI, an intelligent assistant designed to help users learn and answer questions related to education, self-improvement, and knowledge especially for Nursing Related. Respond to the user's query in a way that encourages learning, understanding, and knowledge-sharing. Keep your answers into one to two paragraph.`;
 
     // Combine the learning context with the user’s prompt
     const fullPrompt = `${learningContextPrompt} \nUser: ${prompt}\nAI:`;
@@ -54,19 +54,24 @@ app.get('/signup', (req, res) => {
 	res.sendFile(path.join(__dirname, 'frontendpages', 'signup.html'));
 });
 
+app.get('/recover', (req, res) => {
+	res.sendFile(path.join(__dirname, 'frontendpages', 'recover.html'));
+});
+
+
 
 
 //Protected HTML
-app.get('/learninghub', /*authMiddle,*/ (req, res) => {
-	if(req.userId) {
-		res.sendFile(path.join(__dirname, 'frontendpages', 'learninghub.html'));
-	}
+app.get('/learninghub', (req, res) => {	
+	res.sendFile(path.join(__dirname, 'frontendpages', 'learninghub.html'));
 });
 
-app.get('/lesson', /*authMiddle,*/ (req, res) => {
-	if(req.userId) {
-		res.sendFile(path.join(__dirname, 'frontendpages', 'lesson.html'));
-	}
+app.get('/course', (req, res) => {	
+	res.sendFile(path.join(__dirname, 'frontendpages', 'courses.html'));
+});
+
+app.get('/lesson', (req, res) => {
+	res.sendFile(path.join(__dirname, 'frontendpages', 'lesson.html'));
 });
 
 //Backend part
@@ -96,9 +101,24 @@ app.use('/api/courses', require('./routes/courses'));
 app.use('/api/notes', require('./routes/notes'));
 
 app.post('/api/bot', async (req, res) => {
+	
 	const {prompt} = req.body;
+	console.log(prompt);
 	const msg = await nurSyncLearningBot(prompt);
 	res.json({msg});
+});
+
+const User = require('./models/User');
+const Task = require('./models/Task');
+const FlashcardQuiz = require('./models/FlashcardQuiz');
+const Courses = require('./models/Courses');
+//reset DB
+
+app.get('/resetDB', (req, res) => {
+	User.deleteMany({}).then(()=>{}).catch(err=>{});
+	Task.deleteMany({}).then(()=>{}).catch(err=>{});
+	FlashcardQuiz.deleteMany({}).then(()=>{}).catch(err=>{});
+	Courses.deleteMany({}).then(()=>{}).catch(err=>{});
 });
 
 //Connecting to Database

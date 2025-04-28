@@ -41,10 +41,11 @@
 		<div id="ratio16_9">
 			<img class="fixed" src="recover.png"/>
 			<div class="fixed flexC" style="z-index: 2; height: 84vh;">
-				<div class="flexC divOnCenter fixed" style="top: 3vw; height: 11vw;">
-					<img style="height: 9vw; width: 21vw;" src="lettering.png"/>
-				</div>
-				<div class="flexC" style="height: 61vw; width: 62vw; background: white; border-radius: 3vw;">
+				
+				<div class="flexC" style="height: 75vw; width: 62vw; background: white; border-radius: 3vw;">
+					<div class="flexC divOnCenter" style="top: 3vw; height: 11vw; z-index: 5; position: relative; margin-bottom: 2vw">
+						<img style="height: 9vw; width: 21vw; border-radius: 4vw; z-index: 11; position: absolute" src="bglettering.png"/>
+					</div>
 					<div class="txtsemilarge bold" style="margin-top: 3vw;">
 						Recover Account
 					</div>
@@ -59,7 +60,7 @@
 					</div>
 					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
 						<div class="divOnCenter" style="width: auto; padding: auto ">
-							<input id="emailaddress" class="txtmedium"  style="padding-left: 2vw; width: 37vw; margin: auto" type="text" placeholder="Email Address"/>
+							<input id="emailaddress" class="txtmedium"  style="padding-left: 2vw; width: 37vw; margin: auto" type="number" placeholder="Email Address"/>
 							<small id="emailaddress-error" style="padding: 0 1vw; color: red; display: none;"></small>
 						</div>
 					</div>
@@ -216,7 +217,7 @@
 			function crudData(api, key, keyVal, field, newVal) {
 				const token = localStorage.getItem('token');
 				const refreshToken = localStorage.getItem('refreshToken');
-				fetch(`https://your-ai-endpoint.com/api${api}`, {
+				fetch(`https://nursync.onrender.com/api${api}`, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -249,7 +250,10 @@
 				//alert('clicked');
 				var code = localStorage.getItem('code');
 				var username = $('#username').val();
+				var emailaddress = $('#emailaddress').val();
+				var code = $('#code').val();
 				var password = $('#password').val();
+				var confirmpassword = $('#password').val();
 
 				if (!username.trim()) {
 					$('#username-error').text('Username must not be empty.').show();
@@ -263,6 +267,19 @@
 				} else {
 					$('#username-error').hide();
 				}
+				
+				if (!emailaddress.trim()) {
+					$('#emailaddress-error').text('Email Address must not be empty.').show();
+					return;
+				} else if (emailaddress.includes(' ')) {
+					$('#emailaddress-error').text('Email Address must not have white space.').show();
+					return;
+				} else if (emailaddress.length < 2) {
+					$('#emailaddress-error').text('Email Address must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#emailaddress-error').hide();
+				}
 
 
 				if (!password.trim()) {
@@ -275,9 +292,23 @@
 					$('#password-error').text('Password must be three (3) characters long.').show();
 					return;
 				} else {
-					$('#username-error').hide();
+					$('#password-error').hide();
 				}
-
+				
+				if (!password) {
+					$('#password-error').text('Password must not be empty').show();
+					return
+				} else if (!confirmpassword) {
+					$('#confirmpassword-error').text('Confirm Password must match your password.').show();
+					return;
+				} else if (password != confirmpassword ) {
+					$('#confirmpassword-error').text('Confirm Password does not match the password.').show();
+					return;
+				} else {
+					$('#password-error').hide();
+					$('#confirmpassword-error').hide();
+				}
+			
 
 				fetch('https://nursync.onrender.com/api/auth/recover', {
 					method: 'POST',
@@ -286,6 +317,7 @@
 					},
 					body: JSON.stringify({
 						username,
+						emailaddress,
 						password
 					})
 				})
