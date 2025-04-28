@@ -35,87 +35,67 @@
 				z-index: 4;
 			}
 		</style>
+		<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 	</head>
 	<body>
 		<div id="ratio16_9">
-			<img class="fixed" src="login.png"/>
-			<div class="fixed flexR" style="background: rgba(255,255,255,1); border-radius: 3vw; z-index: 2; margin: 5vh 8vw; width: 84vw; height: 69vw;">
-				<div class="divOnCenter">
-					<img style="opacity: 1; height: 15vw; width: 25vw;" src="greenlettering.png"/>
+			<img class="fixed" src="recover.png"/>
+			<div class="fixed flexC" style="z-index: 2; height: 84vh;">
+				<div class="flexC divOnCenter fixed" style="top: 3vw; height: 11vw;">
+					<img style="height: 9vw; width: 21vw;" src="lettering.png"/>
 				</div>
-				<div class="flexC" style="width: 48vw; margin-right: 11vw;">
-					<div class="txtsemilarge bold" style="margin-top: 1vw;">
-						Create an Account
+				<div class="flexC" style="height: 61vw; width: 62vw; background: white; border-radius: 3vw;">
+					<div class="txtsemilarge bold" style="margin-top: 3vw;">
+						Recover Account
 					</div>
 					<div class="txtsemimedium semibold" style="margin-top: 1vw;">
-						Already have an Account? <a href="../login">Log-in</a>
+						Don't have an Account? <a href="../signup">Sign-up</a>
 					</div>
-					<div class="flexR" style="padding: 0 1vw; width: 100%; margin-top: 2vw;">
-						<div class="" style="margin-left: 0">
-							<input id="firstname" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="First Name" />
-							<small id="firstname-error" style="padding: 0 1vw; color: red; display: none;"></small>
-						</div>
-						<div class="">
-							<input id="lastname" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="Last Name" />
-							<small id="lastname-error" style="padding: 0 1vw; color: red; display: none;"></small>
-						</div>
-						<div class="">
-							<input id="middlename" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="Middle Name" />
-							<small id="middlename-error" style="padding: 0 1vw; color: red; display: none;"></small>
-						</div>
-					</div>
-					<div class="flexR" style="padding: 0 1vw; width: 100%; margin-top: 2vw;">
-						<div class="">
-							<input id="university" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="University" />
-							<small id="university-error" style="padding: 0 1vw; color: red; display: none;"></small>
-						</div>
-						<div class="">
-							<input id="studentid" class="txtmedium" style="padding-left: 2vw;" type="number" placeholder="Student ID" />
-							<small id="studentid-error" style="padding: 0 1vw; color: red; display: none;"></small>
-						</div>
-					</div>
-					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
-						<div class="divOnCenter">
-							<input id="emailaddress" class="txtmedium"  style="padding-left: 2vw;" type="text" placeholder="Email Address"/>
-							<small id="emailaddress-error" style="padding: 0 1vw; color: red; display: none;"></small>
-						</div>
-					</div>
-					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
-						<div class="divOnCenter">
-							<input id="username" class="txtmedium"  style="padding-left: 2vw;" type="text" placeholder="Username"/>
+					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
+						<div class="divOnCenter" style="width: auto; padding: auto ">
+							<input id="username" class="txtmedium" style="padding-left: 2vw; width: 37vw; margin: auto" type="text" placeholder="Username" />
 							<small id="username-error" style="padding: 0 1vw; color: red; display: none;"></small>
 						</div>
 					</div>
-					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
-						<div class="divOnCenter">
-							<input id="password" class="txtmedium"  style="padding-left: 2vw;" type="password" placeholder="Password"/>
-							<small id="password-error" style="padding: 0 1vw; color: red; display: none;"></small>
+					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
+						<div class="divOnCenter" style="width: auto; padding: auto ">
+							<input id="emailaddress" class="txtmedium"  style="padding-left: 2vw; width: 37vw; margin: auto" type="text" placeholder="Email Address"/>
+							<small id="emailaddress-error" style="padding: 0 1vw; color: red; display: none;"></small>
 						</div>
 					</div>
-					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
-						<div class="divOnCenter">
-							<input id="confirmpassword" class="txtmedium"  style="padding-left: 2vw;" type="password" placeholder="Confirm Password"/>
-							<small id="confirmpassword-error" style="padding: 0 1vw; color: red; display: none;"></small>
-						</div>
-					</div>
-					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
-						<div class="divOnCenter input flexR">
-							<input id="agree" type="checkbox" class="customcheckbox" style="display: inline;" />
-							<div  class="txtmedium" style="display: inline;">
-								Agree to terms, policy, and privacy 
-							</div>
-						</div>
-						<small id="agree-error" style="padding: 0 1vw; color: red; display: none;"></small>
+					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 1vw;">
 
-					</div>
-
-					<div style="width: 100%; margin-top: 2vw">
-
-						<button type="button" onClick="signup();" class="green txtmedium" style="color: white; width: 90%; height: 5vw; margin: 0 5%; border-radius: 4vw;">
-							Register
+						<button onClick="sendEmail();" class="green txtmedium" style="color: white; width: 40vw; height: 5vw; border-radius: 4vw;">
+							Send Code
 						</button>
 
 					</div>
+					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
+						<div class="divOnCenter" style="width: auto; padding: auto ">
+							<input id="code" class="txtmedium"  style="padding-left: 2vw; width: 37vw; margin: auto" type="text" placeholder="Code"/>
+							<small id="code-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
+						<div class="divOnCenter" style="width: auto; padding: auto ">
+							<input id="password" class="txtmedium"  style="padding-left: 2vw; width: 37vw; margin: auto" type="password" placeholder="New Password"/>
+							<small id="password-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
+						<div class="divOnCenter" style="width: auto; padding: auto ">
+							<input id="confirmpassword" class="txtmedium"  style="padding-left: 2vw; width: 37vw; margin: auto" type="password" placeholder="Confirm New Password"/>
+							<small id="confirmpassword-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
+
+						<button onClick="recover();" class="green txtmedium" style="color: white; width: 40vw; height: 5vw; margin: 1.8vw 5%; margin-bottom: 3vw; border-radius: 4vw;">
+							Recover
+						</button>
+
+					</div>
+
 
 				</div>
 			</div>
@@ -142,13 +122,16 @@
 			</div>
 		</div>
 
+		<!-- Sticky Button to Show Footer -->
+		<div id="showFooterButton">Show Footer</div>
+
 
 		<!-- Chat Button -->
 		<div class="txtsmall" onClick="toggleChat();"  style="z-index: 5; padding: 0.2vw 1vw; background: white; border-radius: 3vw; display: flex; justify-content: center; align-items: center; position: fixed; bottom: 3vw; left: 3vw;">
 			Chat NurSYNC AI <img class="small circle" style="background: white; border: solid white 0.3vw; border-radius: 2vw;" src="bot.png">
 		</div>
 		<!-- Chat Window -->
-		<div id="chatBox" style="z-index: 5;  position: fixed; bottom: 70px; left: 20px; width: 300px; height: 400px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px; display: none; flex-direction: column; z-index: 1000;">
+		<div id="chatBox" style="z-index: 5; position: fixed; bottom: 70px; right: 20px; width: 300px; height: 400px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px; display: none; flex-direction: column; z-index: 1000;">
 			<div id="chatBoxHeader" style="background-color: #007bff; color: white; padding: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; text-align: center; font-size: 18px;">
 				NurSYNC AI
 			</div>
@@ -201,10 +184,32 @@
 				chatArea.scrollTop = chatArea.scrollHeight; // Scroll to the latest message
 			}
 		</script>
+		<script>
+			// Initialize EmailJS with your user ID
+			emailjs.init('ZzqOpXr_hYVLaWCKy');
+
+			function sendEmail() {
+				alert("i");
+				const emailaddress = $('#emailaddress').val().trim();
+				const code = 1000 + math.random()*8999;
+				const templateParams = {
+					to_email: emailaddress, // Recipient's email
+					from_name: 'NurSYNC',  // Your name
+					message: `Verification for NurSYNC Account Recovery: ${code}`  // Email message
+				};
+
+				emailjs.send('service_yw9bo2o', 'template_0gpmw4c', templateParams)
+					.then(function(response) {
+						alert('Code was sent to your account');
+					}, function(error) {
+						alert('Error occured while sending the code. Make sure email address exists.');
+					});
+				localStorage.setItem('code', code);
+			}
+		</script>
 
 
-		<!-- Sticky Button to Show Footer -->
-		<div id="showFooterButton">Show Footer</div>
+
 
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script>
@@ -228,67 +233,23 @@
 					.then(response => response.json())
 					.then(data => {
 						if (data.error) {
-							console.error('Server Error:', data.msg);
+							alert(data.msg);
 						} else {
-							//data.datatoget
+							const token = data.token;
+							const refreshToken = data.refreshToken;
+							localStorage.setItem("token", token);
+							localStorage.setItem("refreshToken", refreshToken);
 						}
 					})
 					.catch(error => {
 						console.error('Fetch Error:', error);
 					});
 			}
-			function signup() {
-				var firstname = $('#firstname').val();
-				var lastname = $('#lastname').val();
-				var middlename = $('#middlename').val();
-				var university = $('#university').val();
-				var studentid = $('#studentid').val();
-				var emailaddress = $('#emailaddress').val();
+			function recover() {
+				//alert('clicked');
+				var code = localStorage.getItem('code');
 				var username = $('#username').val();
 				var password = $('#password').val();
-				var confirmpassword = $('#confirmpassword').val();
-
-
-				if (!firstname.trim()) {
-					$('#firstname-error').text('First Name must not be empty.').show();
-					return;
-				} else if (firstname.includes(' ')) {
-					$('#firstname-error').text('First Name must not have white space.').show();
-					return;
-				} else if (firstname.length < 2) {
-					$('#firstname-error').text('First Name must be three (3) characters long.').show();
-					return;
-				} else {
-					$('#firstname-error').hide();
-				}
-
-				if (!lastname.trim()) {
-					$('#lastname-error').text('Last Name must not be empty.').show();
-					return;
-				} else if (lastname.includes(' ')) {
-					$('#lastname-error').text('Last Name must not have white space.').show();
-					return;
-				} else if (lastname.length < 2) {
-					$('#lastname-error').text('Last Name must be three (3) characters long.').show();
-					return;
-				} else {
-					$('#lastname-error').hide();
-				}
-
-				if (!middlename.trim()) {
-					$('#middlename-error').text('Middle Name must not be empty.').show();
-					return;
-				} else if (middlename.includes(' ')) {
-					$('#middlename-error').text('Middle Name must not have white space.').show();
-					return;
-				} else if (middlename.length < 2) {
-					$('#middlename-error').text('Middle Name must be three (3) characters long.').show();
-					return;
-				} else {
-					$('#middlename-error').hide();
-				}
-
-
 
 				if (!username.trim()) {
 					$('#username-error').text('Username must not be empty.').show();
@@ -303,6 +264,7 @@
 					$('#username-error').hide();
 				}
 
+
 				if (!password.trim()) {
 					$('#password-error').text('Password must not be empty.').show();
 					return;
@@ -313,42 +275,16 @@
 					$('#password-error').text('Password must be three (3) characters long.').show();
 					return;
 				} else {
-					$('#password-error').hide();
+					$('#username-error').hide();
 				}
 
-				if (!password) {
-					$('#password-error').text('Password must not be empty').show();
-					return
-				} else if (!confirmpassword) {
-					$('#confirmpassword-error').text('Confirm Password must match your password.').show();
-					return;
-				} else if (password != confirmpassword ) {
-					$('#confirmpassword-error').text('Confirm Password does not match the password.').show();
-					return;
-				} else {
-					$('#password-error').hide();
-					$('#confirmpassword-error').hide();
-				}
 
-				if (!($('#agree').is(':checked'))) {
-					$('#agree-error').text('To start user must agree to the terms, policy, and privacy of the application.').show();
-					return
-				} else {
-					$('#agree-error').hide();
-				}
-
-				fetch('https://nursync.onrender.com/api/auth/signup', {
+				fetch('https://nursync.onrender.com/api/auth/recover', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
 					},
 					body: JSON.stringify({
-						firstname,
-						lastname,
-						middlename,
-						university, 
-						studentid,
-						emailaddress,
 						username,
 						password
 					})
@@ -356,18 +292,20 @@
 					.then(response => response.json())
 					.then(data => {
 						if (data.error) {
-							alert(data.msg);
+
+							alert(data.error);
 						} else {
-							alert("Successfully created an Account. You may now Log-in.");
-							window.location.href = '../login';
+							//data.datatoget
+							alert("done");
 						}
 					})
 					.catch(error => {
-						alert(`Fetch Error: Try Again. ${error}`);
+						alert('Fetch Error: Try Again.');
 					});
 			}
 			// Function to toggle footer visibility
 			$(document).ready(function() {
+
 				$('#showFooterButton').click(function() {
 					$('#footer').toggleClass('hidden');
 					// Change button text based on footer visibility

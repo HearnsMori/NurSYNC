@@ -90,7 +90,7 @@
 					NurSYNC
 				</div>
 
-				
+
 
 
 				<!-- Line -->
@@ -112,18 +112,20 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<!-- Then your own script -->
 		<script>
-			
+
 			const courses = [
 				//level 1
 				{
 					level: 1,
-					title: "Anatomy and Physiology",
+					url: "https://nursync.super.site/homepage/learning-hub/anatomy-and-physiology",
+					title: "Anatomy and <br/> Physiology",
 					aaa: "NM 1", // Course Code
 					sem: "First Semester",
 					progress: 0
 				},
 				{
 					level: 1,
+					url: "https://nursync.super.site/homepage/learning-hub/biochemistry",
 					title: "Biochemistry",
 					aaa: "NM 2", // Course Code
 					sem: "First Semester",
@@ -131,107 +133,108 @@
 				},
 				{
 					level: 1,
-					title: "Logic",
-					aaa: "Philo 1", // Course Code
+					url: "https://nursync.super.site/homepage/learning-hub/theoretical-foundations-in-nursing",
+					title: "Theoretical Foundation <br/> in Nursing",
+					aaa: "NP", // Course Code
 					sem: "First Semester",
 					progress: 0
 				},
 				{
 					level: 1,
-					title: "General Psychology",
-					aaa: "Psych 1", // Course Code
-					sem: "First Semester",
+					url: "https://nursync.super.site/homepage/learning-hub/microbiology-and-parasitology",
+					title: "Microbiology and <br/> Parasitology",
+					aaa: "NM 3", // Course Code
+					sem: "Second Semester",
 					progress: 0
 				},
 				{
 					level: 1,
-					title: "Physical Fitness",
-					aaa: "PE 1", // Course Code
-					sem: "First Semester",
+					url: "https://nursync.super.site/homepage/learning-hub/health-assessment",
+					title: "Health Assesment",
+					aaa: "NP 1", // Course Code
+					sem: "Second Semester",
 					progress: 0
 				},
 				{
 					level: 1,
-					title: "CWTS/LTS/ROTC",
-					aaa: "NSTP 1", // Course Code
-					sem: "First Semester",
+					url: "https://nursync.super.site/homepage/learning-hub/fundamentals-of-nursing-practice",
+					title: "Fundamentals of <br/> Nursing Practices",
+					aaa: "NP 3", // Course Code
+					sem: "Second Semester",
 					progress: 0
 				},
 				//level 2 - Assuming First Semester slots first (Data Unavailable)
 				{
 					level: 2,
-					title: "aaa", // Data Unavailable in Image
-					aaa: "aaa",   // Data Unavailable in Image
+					url: "https://nursync.super.site/homepage/learning-hub/community-health-nursing",
+					title: "Community Health <br/> Nursing", // Data Unavailable in Image
+					aaa: "NP 4",   // Data Unavailable in Image
 					sem: "First Semester", // Assuming based on structure
 					progress: 0    // Assuming default
 				},
 				{
 					level: 2,
-					title: "aaa", // Data Unavailable in Image
-					aaa: "aaa",   // Data Unavailable in Image
+					url: "https://nursync.super.site/homepage/learning-hub/nutrition-and-diet-therapy",
+					title: "Nutrition and <br/> Diet Therapy", // Data Unavailable in Image
+					aaa: "NP 5",   // Data Unavailable in Image
 					sem: "First Semester", // Assuming based on structure
 					progress: 0    // Assuming default
 				},
 				// Level 2 - Second Semester (Data from Image)
 				{
 					level: 2,
-					title: "Fundamentals in Nursing Practice",
-					aaa: "NM 103", // Course Code
+					url: "https://nursync.super.site/homepage/learning-hub/pharmacology",
+					title: "Pharmacology",
+					aaa: "NP 6", // Course Code
+					sem: "First Semester",
+					progress: 0
+				},
+				
+				{
+					level: 2,
+					url: "https://nursync.super.site/homepage/learning-hub/care-of-mother-child-adolescents-well-clients",
+					title: "Care of <br/> Mother, Child, <br/> Adolescents (Well Client)",
+					aaa: "NP 7", // Course Code
 					sem: "Second Semester",
 					progress: 0
 				},
 				{
 					level: 2,
-					title: "Health Assessment",
-					aaa: "NM 104", // Course Code
+					url: "https://nursync.super.site/homepage/learning-hub/health-care-ethics-bioethics",
+					title: "Health Care Ethics",
+					aaa: "NP 8", // Course Code
+					sem: "First Semester",
+					progress: 0
+				},
+				{
+					level: 2,
+					url: "https://nursync.super.site/homepage/learning-hub/community-health-nursing-2-population-groups-and-community-as-clients",
+					title: "Community Health <br/> Nursing 2 (Population Groups <br/> and Community as Clients)",
+					aaa: "", // Course Code
 					sem: "Second Semester",
 					progress: 0
 				},
 				{
 					level: 2,
-					title: "Community Health Nursing I",
-					aaa: "NM 105", // Course Code
+					url: "https://nursync.super.site/homepage/learning-hub/care-of-mother-child-at-risk-or-with-problems",
+					title: "Care of <br/> Mother, Child at <br/> Risk or With Problems",
+					aaa: "", // Course Code
 					sem: "Second Semester",
 					progress: 0
 				},
 				{
 					level: 2,
-					title: "Nutrition and Diet Therapy",
-					aaa: "NM 106", // Course Code
+					url: "https://nursync.super.site/homepage/learning-hub/nursing-informatics",
+					title: "Nursing Informatics",
+					aaa: "", // Course Code
 					sem: "Second Semester",
 					progress: 0
 				},
-				{
-					level: 2,
-					title: "Health Education",
-					aaa: "NM 107", // Course Code
-					sem: "Second Semester",
-					progress: 0
-				},
-				{
-					level: 2,
-					title: "Microbiology and Parasitology",
-					aaa: "Micro-Para", // Course Code
-					sem: "Second Semester",
-					progress: 0
-				},
-				{
-					level: 2,
-					title: "Individual/Dual Sports/Games",
-					aaa: "PE 3", // Course Code
-					sem: "Second Semester",
-					progress: 0
-				},
-				{
-					level: 2,
-					title: "Christology",
-					aaa: "Theo 2", // Course Code
-					sem: "Second Semester",
-					progress: 0
-				},
+				
 				//level 3 - First Semester (Data from Image)
 				{
 					level: 3,
+					url: "aaa",
 					title: "Comming Soon",
 					aaa: "...", // Course Code
 					sem: "...",
@@ -240,157 +243,160 @@
 				//level 3 - First Semester (Data from Image)
 				{
 					level: 4,
+					url: "aaa",
 					title: "Comming Soon",
 					aaa: "...", // Course Code
 					sem: "...",
 					progress: 0
 				}
-				
+
 			];
 
-courses.map(course => {
-	
-    const cardHtml = `
-        <a href="https://nursync.super.site/homepage/learning-hub/anatomy-and-physiology" class="card" style="text-decoration: none; color: black; margin: 0.5vw 0; background: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; width: 18vw;">
-            <div class="card-content" style="display: flex; flex-direction: column; gap: 1vw; height: 21vw;">
-                <div class="card-title" style="font-weight: bold; font-size: 1.5vw;">${course.title}</div>
-                <div class="card-nm1" style="font-size: 14px; color: #555;">${course.aaa}</div>
-                <div class="card-semester" style="font-size: 14px; color: #555;">${course.sem}</div>
-                <div class="card-progress" style="font-size: 12px; color: #555;">
-                    ${course.progress}% Progress
-                    <div style="background: #ddd; height: 8px; width: 100%; border-radius: 4px; margin-top: 8px;">
-                        <div style="background: #4caf50; height: 100%; width: ${course.progress}%; border-radius: 4px;"></div>
-                    </div>
-                </div>
-            </div>
-        </a>
-    `;
+			courses.map(course => {
 
-    // jQuery way to append
-    $(`#level${course.level}`).append(cardHtml);
-});
+				const cardHtml = `
+		  <a onClick="localStorage.setItem('course', '`+course.url+`'); window.location.href = '../course';" class="card" style="text-decoration: none; color: black; margin: 0.5vw 0; background: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; width: 18vw;">
+				<div class="card-content" style="display: flex; flex-direction: column; gap: 1vw; height: 21vw;">
+					 <div class="card-title" style="font-weight: bold; font-size: 1.5vw;">${course.title}</div>
+					 <div class="card-nm1" style="font-size: 14px; color: #555;">${course.aaa}</div>
+					 <div class="card-semester" style="font-size: 14px; color: #555;">${course.sem}</div>
+					 <div class="card-progress" style="font-size: 12px; color: #555;">
+						  ${course.progress}% Progress 
+						  <div style="background: #ddd; height: 8px; width: 100%; border-radius: 4px; margin-top: 8px;">
+								<div style="background: #4caf50; height: 100%; width: ${course.progress}%; border-radius: 4px;"></div>
+						  </div>
+					 </div>
+				</div>
+		  </a>
+	 `;
 
-/**
- * Shows or hides level containers based on the input parameter.
- * Assumes jQuery is loaded and elements with IDs level1, level2, level3, level4 exist.
- *
- * @param {number} levelToShow - Pass 1 to show only #level1, pass 0 to show all levels (#level1 to #level4).
- */
-function filterLevels(levelToShow) {
-    // Select the relevant level containers using jQuery
-    const $level1 = $('#level1');
-    const $level2 = $('#level2');
-    const $level3 = $('#level3');
-    const $level4 = $('#level4');
-	$('#allBtn').css('border-bottom', '0');
-    $('#lvl1Btn').css('border-bottom', '0');
-    $('#lvl2Btn').css('border-bottom', '0');
-    $('#lvl3Btn').css('border-bottom', '0');
-    $('#lvl4Btn').css('border-bottom', '0');
-    $('#level1').css('display', 'flex');
-	$('#level1').css('grid-template-columns', ' ');
-	$('#level1').css('gap', ' ');
-	$('#level1').css('padding', '0');
-	$('#level2').css('display', 'flex');
-	$('#level2').css('grid-template-columns', ' ');
-	$('#level2').css('gap', ' ');
-	$('#level2').css('padding', '0');
-	$('#level3').css('display', 'flex');
-	$('#level3').css('grid-template-columns', ' ');
-	$('#level3').css('gap', ' ');
-	$('#level3').css('padding', '0');
-	$('#level4').css('display', 'flex');
-	$('#level4').css('grid-template-columns', ' ');
-	$('#level4').css('gap', ' ');
-	$('#level4').css('padding', '0');
-    if (levelToShow === 1) {
-    	$('#lvl1Btn').css('border-bottom', '0.4vw #373737 solid');
-    	$('#level1').css('display', 'grid');
-		$('#level1').css('grid-template-columns', 'repeat(3, 1fr)');
-		$('#level1').css('gap', '1vw');
-		$('#level1').css('padding', '3vw');
-    
-  
-        // Show Level 1 and hide others
-        $level1.show();
-        $level2.hide();
-        $level3.hide();
-        $level4.hide();
-        // Optional: log action
-        // console.log("Filtering: Showing only Level 1");
-    } else if (levelToShow === 2) {
-    	
-    	$('#level2').css('display', 'grid');
-		$('#level2').css('grid-template-columns', 'repeat(3, 1fr)');
-		$('#level2').css('gap', '1vw');
-		$('#level2').css('padding', '3vw');
-    	$('#lvl2Btn').css('border-bottom', '0.4vw #373737 solid');
-    	
-        // Show Level 1 and hide others
-        $level1.hide();
-        $level2.show();
-        $level3.hide();
-        $level4.hide();
-        // Optional: log action
-        // console.log("Filtering: Showing only Level 1");
-    } else if (levelToShow === 3) {
-    	
-    	$('#level3').css('display', 'grid');
-		$('#level3').css('grid-template-columns', 'repeat(3, 1fr)');
-		$('#level3').css('gap', '1vw');
-		$('#level3').css('padding', '3vw');
-    	$('#lvl3Btn').css('border-bottom', '0.4vw #373737 solid');
-    	
-        // Show Level 1 and hide others
-        $level1.hide();
-        $level2.hide();
-        $level3.show();
-        $level4.hide();
-        // Optional: log action
-        // console.log("Filtering: Showing only Level 1");
-    } else if (levelToShow === 4) {
-    	
-    	$('#level4').css('display', 'grid');
-		$('#level4').css('grid-template-columns', 'repeat(3, 1fr)');
-		$('#level4').css('gap', '1vw');
-		$('#level4').css('padding', '3vw');
-    	$('#lvl4Btn').css('border-bottom', '0.4vw #373737 solid');
-    	
+				// jQuery way to append
+				
+				
+				$(`#level${course.level}`).append(cardHtml);
+			});
 
-        // Show Level 1 and hide others
-        $level1.hide();
-        $level2.hide();
-        $level3.hide();
-        $level4.show();
-        // Optional: log action
-        // console.log("Filtering: Showing only Level 1");
-    } else if (levelToShow === 0) {
-    	$('#allBtn').css('border-bottom', '0.4vw #373737 solid');
-    	$('#block').css('width', '84vw');
-        // Show all levels
-        $level1.show();
-        $level2.show();
-        $level3.show();
-        $level4.show();
-        // Optional: log action
-        // console.log("Filtering: Showing All Levels");
-    } else {
-        // Optional: Handle invalid input, e.g., show all or log an error
-        console.warn(`filterLevels function received an unexpected value: ${levelToShow}. Showing all levels as default.`);
-        $level1.show();
-        $level2.show();
-        $level3.show();
-        $level4.show();
-    }
-    
-}
+			/**
+			 * Shows or hides level containers based on the input parameter.
+			 * Assumes jQuery is loaded and elements with IDs level1, level2, level3, level4 exist.
+			 *
+			 * @param {number} levelToShow - Pass 1 to show only #level1, pass 0 to show all levels (#level1 to #level4).
+			 */
+			function filterLevels(levelToShow) {
+				// Select the relevant level containers using jQuery
+				const $level1 = $('#level1');
+				const $level2 = $('#level2');
+				const $level3 = $('#level3');
+				const $level4 = $('#level4');
+				$('#allBtn').css('border-bottom', '0');
+				$('#lvl1Btn').css('border-bottom', '0');
+				$('#lvl2Btn').css('border-bottom', '0');
+				$('#lvl3Btn').css('border-bottom', '0');
+				$('#lvl4Btn').css('border-bottom', '0');
+				$('#level1').css('display', 'flex');
+				$('#level1').css('grid-template-columns', ' ');
+				$('#level1').css('gap', ' ');
+				$('#level1').css('padding', '0');
+				$('#level2').css('display', 'flex');
+				$('#level2').css('grid-template-columns', ' ');
+				$('#level2').css('gap', ' ');
+				$('#level2').css('padding', '0');
+				$('#level3').css('display', 'flex');
+				$('#level3').css('grid-template-columns', ' ');
+				$('#level3').css('gap', ' ');
+				$('#level3').css('padding', '0');
+				$('#level4').css('display', 'flex');
+				$('#level4').css('grid-template-columns', ' ');
+				$('#level4').css('gap', ' ');
+				$('#level4').css('padding', '0');
+				if (levelToShow === 1) {
+					$('#lvl1Btn').css('border-bottom', '0.4vw #373737 solid');
+					$('#level1').css('display', 'grid');
+					$('#level1').css('grid-template-columns', 'repeat(3, 1fr)');
+					$('#level1').css('gap', '1vw');
+					$('#level1').css('padding', '3vw');
 
-// --- Example Usage ---
-// To show only Level 1:
-// filterLevels(1);
 
-// To show all Levels (1 through 4):
-// filterLevels(0);
+					// Show Level 1 and hide others
+					$level1.show();
+					$level2.hide();
+					$level3.hide();
+					$level4.hide();
+					// Optional: log action
+					// console.log("Filtering: Showing only Level 1");
+				} else if (levelToShow === 2) {
+
+					$('#level2').css('display', 'grid');
+					$('#level2').css('grid-template-columns', 'repeat(3, 1fr)');
+					$('#level2').css('gap', '1vw');
+					$('#level2').css('padding', '3vw');
+					$('#lvl2Btn').css('border-bottom', '0.4vw #373737 solid');
+
+					// Show Level 1 and hide others
+					$level1.hide();
+					$level2.show();
+					$level3.hide();
+					$level4.hide();
+					// Optional: log action
+					// console.log("Filtering: Showing only Level 1");
+				} else if (levelToShow === 3) {
+
+					$('#level3').css('display', 'grid');
+					$('#level3').css('grid-template-columns', 'repeat(3, 1fr)');
+					$('#level3').css('gap', '1vw');
+					$('#level3').css('padding', '3vw');
+					$('#lvl3Btn').css('border-bottom', '0.4vw #373737 solid');
+
+					// Show Level 1 and hide others
+					$level1.hide();
+					$level2.hide();
+					$level3.show();
+					$level4.hide();
+					// Optional: log action
+					// console.log("Filtering: Showing only Level 1");
+				} else if (levelToShow === 4) {
+
+					$('#level4').css('display', 'grid');
+					$('#level4').css('grid-template-columns', 'repeat(3, 1fr)');
+					$('#level4').css('gap', '1vw');
+					$('#level4').css('padding', '3vw');
+					$('#lvl4Btn').css('border-bottom', '0.4vw #373737 solid');
+
+
+					// Show Level 1 and hide others
+					$level1.hide();
+					$level2.hide();
+					$level3.hide();
+					$level4.show();
+					// Optional: log action
+					// console.log("Filtering: Showing only Level 1");
+				} else if (levelToShow === 0) {
+					$('#allBtn').css('border-bottom', '0.4vw #373737 solid');
+					$('#block').css('width', '84vw');
+					// Show all levels
+					$level1.show();
+					$level2.show();
+					$level3.show();
+					$level4.show();
+					// Optional: log action
+					// console.log("Filtering: Showing All Levels");
+				} else {
+					// Optional: Handle invalid input, e.g., show all or log an error
+					console.warn(`filterLevels function received an unexpected value: ${levelToShow}. Showing all levels as default.`);
+					$level1.show();
+					$level2.show();
+					$level3.show();
+					$level4.show();
+				}
+
+			}
+
+			// --- Example Usage ---
+			// To show only Level 1:
+			// filterLevels(1);
+
+			// To show all Levels (1 through 4):
+			// filterLevels(0);
 
 			console.log(courses); // You can use this to see the result
 			function nav(page) {
@@ -398,10 +404,14 @@ function filterLevels(levelToShow) {
 				
 			}
 			$(document).ready(function() {
-
-
-
-
+				const all = $('body');
+				if (!localStorage.getItem('token')) {
+					all.hide();
+					nav('../');
+				} else {
+					
+				}
+				
 			});
 		</script>
 	</body>
