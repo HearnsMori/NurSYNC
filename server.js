@@ -72,7 +72,7 @@ app.get('/lesson', /*authMiddle,*/ (req, res) => {
 //Backend part
 
 app.use(session({
-	secret: process.env.SECRET_KEY,
+	secret: process.env.SECRETKEY,
 	resave: false,
 	saveUninitialized: true
 }));
