@@ -276,7 +276,7 @@
 					$('#agree-error').hide();
 				}
 				
-				fetch(`https://nursync.onrender.com/api/auth/signup`, {
+				fetch('https://nursync.onrender.com/api/auth/signup', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
@@ -297,17 +297,16 @@
 						if (data.error) {
 							alert(data.msg);
 						} else {
-							alert("Successfully created an Account. You may now Log-in."
+							alert("Successfully created an Account. You may now Log-in.");
 							window.location.href = '../login';
 						}
 					})
 					.catch(error => {
-						alert('Fetch Error: Try Again.');
+						alert(`Fetch Error: Try Again. ${error}`);
 					});
 			}
 			// Function to toggle footer visibility
 			$(document).ready(function() {
-
 				$('#showFooterButton').click(function() {
 					$('#footer').toggleClass('hidden');
 					// Change button text based on footer visibility
@@ -316,7 +315,6 @@
 					} else {
 						$('#showFooterButton').text('Hide Footer');
 					}
-
 				});
 			});
 		</script>

@@ -18,7 +18,7 @@ const Notes = new mongoose.Schema({
 		required: true,
 		default: ""
 	},
-	url: {
+	clicked: {
 		type: Boolean,
 		unique: false,
 		required: false,

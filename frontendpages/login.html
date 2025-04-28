@@ -158,7 +158,7 @@
 				//alert('clicked');
 				var username = $('#username').val();
 				var password = $('#password').val();
-				alert(username);
+				
 				if (!username.trim()) {
 					$('#username-error').text('Username must not be empty.').show();
 					return;
@@ -187,7 +187,7 @@
 				}
 
 
-				fetch(`https://nursync.onrender.com/api/auth/login`, {
+				fetch('https://nursync.onrender.com/api/auth/login', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
@@ -200,6 +200,7 @@
 					.then(response => response.json())
 					.then(data => {
 						if (data.error) {
+							alert("hi");
 							alert(data.msg);
 						} else {
 							//data.datatoget

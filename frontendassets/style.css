@@ -84,7 +84,9 @@ li {
 	font-weight: 500;
 	font-size: 2vw;
 }
-
+.filter div {
+	margin: 1vw 2vw;
+}
 /*common usage*/
 /*text*/
 .semibold {

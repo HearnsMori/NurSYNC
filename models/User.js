@@ -8,7 +8,7 @@ const User = new mongoose.Schema({
 		default: ''
 	},
 	profilepic: {
-		type: String,
+		type: Buffer,
 		unique: false,
 		required: false,
 		default: '/serverstorage/user/profilepic/default/default.png'
@@ -78,6 +78,12 @@ const User = new mongoose.Schema({
 		unique: false,
 		required: false,
 		default: ['']
+	},
+	progress: {
+		type: [Number],
+		unique: false,
+		required: false,
+		default: [0]
 	}
 });
 

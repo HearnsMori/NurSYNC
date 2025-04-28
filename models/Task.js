@@ -20,7 +20,7 @@ const Task = new mongoose.Schema({
 		default: ''
 	},
 	icon: {
-		type: String,
+		type: Number,
 		unique: false,
 		required: false,
 		default: ''

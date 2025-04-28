@@ -28,17 +28,15 @@ app.get('/signup', (req, res) => {
 	res.sendFile(path.join(__dirname, 'frontendpages', 'signup.html'));
 });
 
+
+
 //Protected HTML
-app.get('/learninghub', authMiddle, (req, res) => {
-	if(req.userId) {
-		res.sendFile(path.join(__dirname, 'frontendpages', 'learninghub.html'));
-	}
+app.get('/learninghub', /*authMiddle,*/ (req, res) => {
+	res.sendFile(path.join(__dirname, 'frontendpages', 'learninghub.html'));
 });
 
-app.get('/lesson', authMiddle, (req, res) => {
-	if(req.userId) {
-		res.sendFile(path.join(__dirname, 'frontendpages', 'lesson.html'));
-	}
+app.get('/lesson', /*authMiddle,*/ (req, res) => {
+	res.sendFile(path.join(__dirname, 'frontendpages', 'lesson.html'));
 });
 
 //Backend part
@@ -50,7 +48,7 @@ app.use(session({
 }));
 
 app.use(cors({
-	origin: '',
+	origin: ['https://nursync.onrender.com', 'http://localhost:10000'],
 	credentials: true
 }));
 

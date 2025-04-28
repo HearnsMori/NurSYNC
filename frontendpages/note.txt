@@ -19,6 +19,7 @@ Models:
 		country
 		cityortown
 		coursesclicked
+		progress
 	FlashcardQuiz:
 		username
 		term
@@ -33,12 +34,10 @@ Models:
 		title
 		*/
 	Courses: //Server
-		username
 		level
 		title
 		aaa
 		sem
-		progress
 	Notes: //Server
 		username
 		courses
