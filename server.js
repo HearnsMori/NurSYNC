@@ -95,7 +95,7 @@ app.use('/api/flashcardquiz', require('./routes/flashcardquiz'));
 app.use('/api/courses', require('./routes/courses'));
 app.use('/api/notes', require('./routes/notes'));
 
-app.post('/api/bot', (req, res) => {
+app.post('/api/bot', async (req, res) => {
 	const {prompt} = req.body;
 	const msg = await nurSyncLearningBot(prompt);
 	res.json({msg});
