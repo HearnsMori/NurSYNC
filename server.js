@@ -132,6 +132,7 @@ app.get('/resetDB', (req, res) => {
 	Task.deleteMany({}).then(()=>{}).catch(err=>{});
 	FlashcardQuiz.deleteMany({}).then(()=>{}).catch(err=>{});
 	Courses.deleteMany({}).then(()=>{}).catch(err=>{});
+	res.status(201).json({msg: "Successfully Reset Database"});
 });
 
 //Connecting to Database
