@@ -174,6 +174,65 @@
 			</div>
 		</div>
 
+<!-- Chat Button -->
+<div class="txtsmall" onClick="toggleChat();"  style="padding: 0.2vw 1vw; background: white; border-radius: 3vw; display: flex; justify-content: center; align-items: center; position: fixed; bottom: 3vw; right: 3vw;">
+	Chat NurSYNC AI <img class="small circle" style="background: white; border: solid white 0.3vw; border-radius: 2vw;" src="bot.png">
+</div>
+<!-- Chat Window -->
+<div id="chatBox" style="position: fixed; bottom: 70px; right: 20px; width: 300px; height: 400px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px; display: none; flex-direction: column; z-index: 1000;">
+  <div id="chatBoxHeader" style="background-color: #007bff; color: white; padding: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; text-align: center; font-size: 18px;">
+    NurSYNC AI
+  </div>
+  <div id="chatArea" style="flex-grow: 1; padding: 10px; overflow-y: auto; border-bottom: 1px solid #ccc;">
+    <!-- Chat messages will be appended here -->
+  </div>
+  <input type="text" id="userInput" placeholder="Type a message..." style="width: 100%; padding: 10px; border: none; border-top: 1px solid #ccc; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;" onkeydown="if(event.key === 'Enter'){sendMessage()}">
+</div>
+
+<!-- JavaScript for toggling the chat window and sending messages -->
+<script>
+  function toggleChat() {
+    const chatBox = document.getElementById("chatBox");
+    chatBox.style.display = chatBox.style.display === "none" ? "flex" : "none";
+  }
+
+  async function sendMessage() {
+    const userInput = document.getElementById("userInput");
+    const messageText = userInput.value.trim();
+    if (messageText === "") return;
+
+    // Append user message
+    appendMessage(messageText, 'user');
+
+    // Clear the input field
+    userInput.value = "";
+
+    // Send the prompt to the server and get the response
+    try {
+      const response = await fetch('https://nursync.onrender.com/api/bot', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt: messageText }),
+      });
+      const data = await response.json();
+      appendMessage(data.msg, 'bot');
+    } catch (error) {
+      appendMessage("Error: Unable to get response from AI", 'bot');
+    }
+  }
+
+  function appendMessage(message, sender) {
+    const chatArea = document.getElementById("chatArea");
+    const messageDiv = document.createElement("div");
+    messageDiv.textContent = message;
+    messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
+    chatArea.appendChild(messageDiv);
+    chatArea.scrollTop = chatArea.scrollHeight; // Scroll to the latest message
+  }
+</script>
+
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<!-- Then your own script -->
 		<script>

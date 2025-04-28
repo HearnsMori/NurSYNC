@@ -85,7 +85,7 @@ const verify = async (req, res) => {
 
 const recover = async (req, res) => {
 	console.log("recover");
-	const {username, email1, password} = req.body;
+	const {username, emailaddress} = req.body;
 	try {
 		const account = await Email.findOne({username});
 		if(!account) {

@@ -10,6 +10,32 @@ const app = express();
 
 const PORT = process.env.PORT || 10000;
 
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+async function nurSyncLearningBot(prompt) {
+  try {
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+
+    // Add a prompt context that guides the bot to respond as a learning assistant
+    const learningContextPrompt = `You are NurSYNC AI, an intelligent assistant designed to help users learn and answer questions related to education, self-improvement, and knowledge especially for Nursing Related. Respond to the user's query in a way that encourages learning, understanding, and knowledge-sharing. Keep your answers clear, supportive, and educational.`;
+
+    // Combine the learning context with the user’s prompt
+    const fullPrompt = `${learningContextPrompt} \nUser: ${prompt}\nAI:`;
+
+    // Generate content based on the combined prompt
+    const result = await model.generateContent(fullPrompt);
+    const response = await result.response;
+    const text = response.text();
+
+    // Return the generated text as the bot's response
+    return text;
+  } catch (err) {
+    console.error("Gemini API error:", err);
+    return "Error from NurSYNC AI"; // Fallback error message
+  }
+}
+
 //Frontend part
 // Serve static files (CSS, JS, images, etc.) from frontend folder
 app.use(express.static(path.join(__dirname, 'frontendassets')));
@@ -68,6 +94,12 @@ app.use('/api/task', require('./routes/task'));
 app.use('/api/flashcardquiz', require('./routes/flashcardquiz'));
 app.use('/api/courses', require('./routes/courses'));
 app.use('/api/notes', require('./routes/notes'));
+
+app.post('/api/bot', (req, res) => {
+	const {prompt} = req.body;
+	const msg = await nurSyncLearningBot(prompt);
+	res.json({msg});
+});
 
 //Connecting to Database
 const { MongoClient, ServerApiVersion } = require('mongodb');
