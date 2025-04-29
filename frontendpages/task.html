@@ -207,7 +207,7 @@ async function postTask() {
 		parseInt($('#icon').val()),
 		new Date($('#deadline').val()).getTime(), // convert selected datetime to timestamp
 	], '','');
-	alert('clicked');
+	window.location.reload();
 }
 
 async function crudData(api, key, keyVal, field, newVal) {
@@ -435,7 +435,6 @@ async function crudData(api, key, keyVal, field, newVal) {
 						'deadline'
 					], '');
 					tasks.push(...task);
-					alert(tasks[1]);
 					filterTasks('today');
 				}
 				
