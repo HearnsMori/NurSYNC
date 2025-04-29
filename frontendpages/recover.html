@@ -4,6 +4,7 @@
 		<title>
 			NurSYNC
 		</title>
+		<meta name="mobile-web-app-capable" content="yes"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" href="style.css"/>
 		<link rel="icon" type="image/png" href="logo.png"/>
@@ -38,10 +39,8 @@
 		<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
 	</head>
 	<body>
-		<div id="ratio16_9">
-			<img class="fixed" src="recover.png"/>
-			<div class="fixed flexC" style="z-index: 2; height: 84vh;">
-				
+		<div id="ratio16_9" style="background: url('recover.png'); height: 100vh; width: 100vw; padding: auto">		
+			<div class="flexC" style="z-index: 2; height: 73vw; margin: 3vw 0;">
 				<div class="flexC" style="height: 75vw; width: 62vw; background: white; border-radius: 3vw;">
 					<div class="flexC divOnCenter" style="top: 3vw; height: 11vw; z-index: 5; position: relative; margin-bottom: 2vw">
 						<img style="height: 9vw; width: 21vw; border-radius: 4vw; z-index: 11; position: absolute" src="bglettering.png"/>
@@ -54,50 +53,44 @@
 					</div>
 					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
 						<div class="divOnCenter" style="width: auto; padding: auto ">
-							<input id="username" class="txtmedium" style="padding-left: 2vw; width: 37vw; margin: auto" type="text" placeholder="Username" />
+							<input id="username" class="txtmedium" style="padding-left: 2vw; height: 4.5vw; width: 37vw; margin: auto" type="text" placeholder="Username" />
 							<small id="username-error" style="padding: 0 1vw; color: red; display: none;"></small>
 						</div>
 					</div>
 					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
 						<div class="divOnCenter" style="width: auto; padding: auto ">
-							<input id="emailaddress" class="txtmedium"  style="padding-left: 2vw; width: 37vw; margin: auto" type="number" placeholder="Email Address"/>
+							<input id="emailaddress" class="txtmedium"  style="padding-left: 2vw; height: 4.5vw; width: 37vw; margin: auto" type="number" placeholder="Email Address"/>
 							<small id="emailaddress-error" style="padding: 0 1vw; color: red; display: none;"></small>
 						</div>
 					</div>
 					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 1vw;">
-
 						<button onClick="sendEmail();" class="green txtmedium" style="color: white; width: 40vw; height: 5vw; border-radius: 4vw;">
 							Send Code
 						</button>
-
 					</div>
 					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
 						<div class="divOnCenter" style="width: auto; padding: auto ">
-							<input id="code" class="txtmedium"  style="padding-left: 2vw; width: 37vw; margin: auto" type="text" placeholder="Code"/>
+							<input id="code" class="txtmedium"  style="padding-left: 2vw; width: 37vw; height: 4.5vw; margin: auto" type="text" placeholder="Code"/>
 							<small id="code-error" style="padding: 0 1vw; color: red; display: none;"></small>
 						</div>
 					</div>
 					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
 						<div class="divOnCenter" style="width: auto; padding: auto ">
-							<input id="password" class="txtmedium"  style="padding-left: 2vw; width: 37vw; margin: auto" type="password" placeholder="New Password"/>
+							<input id="password" class="txtmedium"  style="padding-left: 2vw; width: 37vw; height: 4.5vw; margin: auto" type="password" placeholder="New Password"/>
 							<small id="password-error" style="padding: 0 1vw; color: red; display: none;"></small>
 						</div>
 					</div>
 					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
 						<div class="divOnCenter" style="width: auto; padding: auto ">
-							<input id="confirmpassword" class="txtmedium"  style="padding-left: 2vw; width: 37vw; margin: auto" type="password" placeholder="Confirm New Password"/>
+							<input id="confirmpassword" class="txtmedium"  style="padding-left: 2vw; width: 37vw; height: 4.5vw; margin: auto" type="password" placeholder="Confirm New Password"/>
 							<small id="confirmpassword-error" style="padding: 0 1vw; color: red; display: none;"></small>
 						</div>
 					</div>
 					<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 2vw;">
-
 						<button onClick="recover();" class="green txtmedium" style="color: white; width: 40vw; height: 5vw; margin: 1.8vw 5%; margin-bottom: 3vw; border-radius: 4vw;">
 							Recover
 						</button>
-
 					</div>
-
-
 				</div>
 			</div>
 			<!-- Footer -->
@@ -352,6 +345,12 @@
 			// Function to toggle footer visibility
 			$(document).ready(function() {
 				const all = $('body');
+				function fullscreen() {
+					document.documentElement.requestFullscreen();
+				}
+				$('body').on('click scroll mousedown mouseup touchstart touchmove touchend', (event) => {
+					fullscreen();
+				}); 
 				if (localStorage.getItem('token')) {
 					all.hide();
 					window.location.href = '../'

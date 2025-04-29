@@ -37,9 +37,9 @@
 		</style>
 	</head>
 	<body>
-		<div id="ratio16_9">
-			<img class="fixed" src="login.png"/>
-			<div class="fixed flexR signup" style="background: rgba(255,255,255,1); border-radius: 3vw; z-index: 2; margin: 5vh 8vw; width: 84vw; height: 51vw;">
+		
+		<div id="ratio16_9" style="overflow-y: auto; height: 100vh; width: 100vw; padding-bottom: 7vw; z-index: 3; background: url('signup.png')">
+			<div class="flexR signup" style="position: block; z-index: 3; background: rgba(255,255,255,1); border-radius: 3vw; margin: 2vw 8vw; width: 84vw; height: 51vw;">
 				<div class="divOnCenter">
 					<img style="opacity: 1; height: 15vw; width: 25vw;" src="greenlettering.png"/>
 				</div>
@@ -292,9 +292,6 @@
 				if (!university.trim()) {
 					$('#university-error').text('Univeristy must not be empty.').show();
 					return;
-				} else if (university.includes(' ')) {
-					$('#university-error').text('Univeristy must not have white space.').show();
-					return;
 				} else if (university.length < 2) {
 					$('#university-error').text('Univeristy must be three (3) characters long.').show();
 					return;
@@ -409,6 +406,12 @@
 			// Function to toggle footer visibility
 			$(document).ready(function() {
 				const all = $('body');
+				function fullscreen() {
+					document.documentElement.requestFullscreen();
+				}
+				$('body').on('click scroll mousedown mouseup touchstart touchmove touchend', (event) => {
+					fullscreen();
+				}); 
 				if (localStorage.getItem('token')) {
 					all.hide();
 					window.location.href = '../'

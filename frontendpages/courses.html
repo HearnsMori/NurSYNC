@@ -131,6 +131,13 @@
         window.location.href = "../learninghub";
     }
     $(document).ready(function() {
+    	function fullscreen() {
+					document.documentElement.requestFullscreen();
+				}
+				$('body').on('click scroll mousedown mouseup touchstart touchmove touchend', (event) => {
+					fullscreen();
+				}); 
+				
 		$('#course').attr('src', localStorage.getItem('course'));
 		
 		const all = $('body');

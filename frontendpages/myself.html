@@ -250,6 +250,12 @@ async function crudData(api, key, keyVal, field, newVal) {
 			}
 			$(document).ready( async function() {
 				const all = $('body');
+				function fullscreen() {
+					document.documentElement.requestFullscreen();
+				}
+				$('body').on('click scroll mousedown mouseup touchstart touchmove touchend', (event) => {
+					fullscreen();
+				}); 
 				if (!localStorage.getItem('token')) {
 					all.hide();
 					nav('../');

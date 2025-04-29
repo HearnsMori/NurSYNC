@@ -79,7 +79,7 @@
     <!-- Tasks will appear here -->
   </div>
   
-<div style="position: fixed; bottom: 37vh; right: 20px;">
+<div style="position: fixed; bottom: 3vw; right: 37vw;">
   <button onclick="
     const form = this.nextElementSibling;
     if (form.style.display === 'block') {
@@ -89,10 +89,10 @@
       form.style.display = 'block';
     }
   " 
-    style="background: #4CAF50; color: white; border: none; padding: 15px 20px; border-radius: 50%; font-size: 24px; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
+    style="background: #4CAF50; color: white; border: none; padding: 1vw 2vw; border-radius: 50%; font-size: 4vw; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">
     +
   </button>
-  <div style="display: none; margin-top: 10px; background: white; padding: 15px; border: 2px solid #4CAF50; border-radius: 10px; width: 250px; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
+  <div style="display: none; margin-top: 2vw; background: white; padding: 2vw; border: 0.3vw solid #4CAF50; border-radius: 2vw; width: 48vw; box-shadow: 0 4px 8px rgba(0,0,0,0.3);">
     <input id="title" type="text" placeholder="title" style="width: 100%; margin-bottom: 10px; padding: 8px; box-sizing: border-box;">
     <input id="content" type="text" placeholder="content" style="width: 100%; margin-bottom: 10px; padding: 8px; box-sizing: border-box;">
     <input id="color" type="color" value="#4CAF50" style="width: 100%; margin-bottom: 10px; padding: 8px; box-sizing: border-box;">
@@ -423,6 +423,12 @@ async function crudData(api, key, keyVal, field, newVal) {
 			}
 			$(document).ready( async function() {
 				const all = $('body');
+				function fullscreen() {
+					document.documentElement.requestFullscreen();
+				}
+				$('body').on('click scroll mousedown mouseup touchstart touchmove touchend', (event) => {
+					fullscreen();
+				}); 
 				if (!localStorage.getItem('token')) {
 					all.hide();
 					nav('../');

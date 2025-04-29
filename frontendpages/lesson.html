@@ -15,7 +15,19 @@
 		<!-- Then your own script -->
 		<script>
 			$(document).ready(function() {
-				
+				function fullscreen() {
+					document.documentElement.requestFullscreen();
+				}
+				const all = $('body');
+				$('body').on('click scroll mousedown mouseup touchstart touchmove touchend', (event) => {
+					fullscreen();
+				}); 
+				if (!localStorage.getItem('token')) {
+					all.hide();
+					nav('../');
+				} else {
+					
+				}
 			});
 		</script>
 	</body>

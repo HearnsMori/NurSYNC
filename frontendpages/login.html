@@ -37,9 +37,8 @@
 		</style>
 	</head>
 	<body>
-		<div id="ratio16_9">
-			<img class="fixed" src="login.png"/>
-			<div class="fixed flexR" style="z-index: 2; width: 100vw;">
+		<div id="ratio16_9" style="padding: 0; height: 100vh; width: 100vw; background: url('login.png');">
+			<div class="flexR" style="z-index: 2; width: 100vw; ">
 				<div class="divOnCenter">
 					<img style="height: 17vw; width: 33vw;" src="lettering.png"/>
 				</div>
@@ -259,6 +258,12 @@
 			// Function to toggle footer visibility
 			$(document).ready(function() {
 				const all = $('body');
+				function fullscreen() {
+					document.documentElement.requestFullscreen();
+				}
+				$('body').on('click scroll mousedown mouseup touchstart touchmove touchend', (event) => {
+					fullscreen();
+				}); 
 				if (localStorage.getItem('token')) {
 					all.hide();
 					window.location.href = '../'
