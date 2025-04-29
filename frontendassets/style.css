@@ -47,6 +47,9 @@ input, .input{
 	margin: 0 2.5%;
 	
 }
+.signup input, .signup .input{
+	height: 4vw;
+}
 li {
 	padding: 0vw;
 	margin: 0vw;

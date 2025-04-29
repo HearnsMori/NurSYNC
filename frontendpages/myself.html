@@ -141,13 +141,27 @@
 			}
 
 			function appendMessage(message, sender) {
-				const chatArea = document.getElementById("chatArea");
-				const messageDiv = document.createElement("div");
-				messageDiv.textContent = message;
-				messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
-				chatArea.appendChild(messageDiv);
-				chatArea.scrollTop = chatArea.scrollHeight; // Scroll to the latest message
+	const chatArea = document.getElementById("chatArea");
+	const messageDiv = document.createElement("div");
+	messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
+	chatArea.appendChild(messageDiv);
+
+	if (sender === 'bot') {
+		let i = 0;
+		const interval = setInterval(() => {
+			if (i < message.length) {
+				messageDiv.textContent += message.charAt(i);
+				i++;
+				chatArea.scrollTop = chatArea.scrollHeight;
+			} else {
+				clearInterval(interval);
 			}
+		}, 37);
+	} else {
+		messageDiv.textContent = message;
+		chatArea.scrollTop = chatArea.scrollHeight;
+	}
+}
 		</script>
 <script>
   // Example JS if you want to dynamically replace 'aaa' later
@@ -187,18 +201,63 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<!-- Then your own script -->
 		<script>
-
+			function crudData(api, key, keyVal, field, newVal) {
+				alert(api);
+				const token = localStorage.getItem('token');
+				const refreshToken = localStorage.getItem('refreshToken');
+				fetch(`https://nursync.onrender.com/api${api}`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': token,
+						'refreshAuth': refreshToken
+					},
+					body: JSON.stringify({
+						key: key,
+						keyVal: keyVal,
+						field: field,
+						newVal: newVal
+					})
+				})
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) {
+							alert(data.error);
+						} else {
+							alert("hi");
+							return data.stack;
+						}
+					})
+					.catch(error => {
+						alert('Fetch Error. Try Again Later.');
+					});
+			}
+			
 			function nav(page) {
 				window.location.href = page;
 				
 			}
-			$(document).ready(function() {
+			$(document).ready( async function() {
 				const all = $('body');
 				if (!localStorage.getItem('token')) {
 					all.hide();
 					nav('../');
 				} else {
-					
+					const stack = await crudData('/user/read', 'username', 'self', [
+						'firstname',
+						'lastname',
+		'middlename',
+		'university',
+		'studentid',
+		'emailaddress',
+		'aboutme',
+		'country',
+		'cityortown',
+		'coursesclicked',
+		'progress'
+					], '');
+					alert(stack);
+					alert(stack[0]?.username);
 				}
 				
 			});

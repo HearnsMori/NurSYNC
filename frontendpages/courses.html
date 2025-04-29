@@ -103,13 +103,27 @@
 			}
 
 			function appendMessage(message, sender) {
-				const chatArea = document.getElementById("chatArea");
-				const messageDiv = document.createElement("div");
-				messageDiv.textContent = message;
-				messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
-				chatArea.appendChild(messageDiv);
-				chatArea.scrollTop = chatArea.scrollHeight; // Scroll to the latest message
+	const chatArea = document.getElementById("chatArea");
+	const messageDiv = document.createElement("div");
+	messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
+	chatArea.appendChild(messageDiv);
+
+	if (sender === 'bot') {
+		let i = 0;
+		const interval = setInterval(() => {
+			if (i < message.length) {
+				messageDiv.textContent += message.charAt(i);
+				i++;
+				chatArea.scrollTop = chatArea.scrollHeight;
+			} else {
+				clearInterval(interval);
 			}
+		}, 37);
+	} else {
+		messageDiv.textContent = message;
+		chatArea.scrollTop = chatArea.scrollHeight;
+	}
+}
 		</script>
 
 <script>

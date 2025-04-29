@@ -39,7 +39,7 @@
 	<body>
 		<div id="ratio16_9">
 			<img class="fixed" src="login.png"/>
-			<div class="fixed flexR" style="background: rgba(255,255,255,1); border-radius: 3vw; z-index: 2; margin: 5vh 8vw; width: 84vw; height: 69vw;">
+			<div class="fixed flexR signup" style="background: rgba(255,255,255,1); border-radius: 3vw; z-index: 2; margin: 5vh 8vw; width: 84vw; height: 51vw;">
 				<div class="divOnCenter">
 					<img style="opacity: 1; height: 15vw; width: 25vw;" src="greenlettering.png"/>
 				</div>
@@ -193,13 +193,27 @@
 			}
 
 			function appendMessage(message, sender) {
-				const chatArea = document.getElementById("chatArea");
-				const messageDiv = document.createElement("div");
-				messageDiv.textContent = message;
-				messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
-				chatArea.appendChild(messageDiv);
-				chatArea.scrollTop = chatArea.scrollHeight; // Scroll to the latest message
+	const chatArea = document.getElementById("chatArea");
+	const messageDiv = document.createElement("div");
+	messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
+	chatArea.appendChild(messageDiv);
+
+	if (sender === 'bot') {
+		let i = 0;
+		const interval = setInterval(() => {
+			if (i < message.length) {
+				messageDiv.textContent += message.charAt(i);
+				i++;
+				chatArea.scrollTop = chatArea.scrollHeight;
+			} else {
+				clearInterval(interval);
 			}
+		}, 37);
+	} else {
+		messageDiv.textContent = message;
+		chatArea.scrollTop = chatArea.scrollHeight;
+	}
+}
 		</script>
 
 
@@ -275,17 +289,43 @@
 					$('#lastname-error').hide();
 				}
 
-				if (!middlename.trim()) {
-					$('#middlename-error').text('Middle Name must not be empty.').show();
+				if (!university.trim()) {
+					$('#university-error').text('Univeristy must not be empty.').show();
 					return;
-				} else if (middlename.includes(' ')) {
-					$('#middlename-error').text('Middle Name must not have white space.').show();
+				} else if (university.includes(' ')) {
+					$('#university-error').text('Univeristy must not have white space.').show();
 					return;
-				} else if (middlename.length < 2) {
-					$('#middlename-error').text('Middle Name must be three (3) characters long.').show();
+				} else if (university.length < 2) {
+					$('#university-error').text('Univeristy must be three (3) characters long.').show();
 					return;
 				} else {
-					$('#middlename-error').hide();
+					$('#university-error').hide();
+				}
+				
+				if (!studentid.trim()) {
+					$('#studentid-error').text('Student ID must not be empty.').show();
+					return;
+				} else if (studentid.includes(' ')) {
+					$('#studentid-error').text('Student ID must not have white space.').show();
+					return;
+				} else if (studentid.length < 2) {
+					$('#studentid-error').text('Student ID must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#studentid-error').hide();
+				}
+				
+				if (!emailaddress.trim()) {
+					$('#emailaddress-error').text('Email Address must not be empty.').show();
+					return;
+				} else if (emailaddress.includes(' ')) {
+					$('#emailaddress-error').text('Email Address must not have white space.').show();
+					return;
+				} else if (emailaddress.length < 2) {
+					$('#emailaddress-error').text('Email Address must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#emailaddress-error').hide();
 				}
 
 
@@ -373,7 +413,7 @@
 					all.hide();
 					window.location.href = '../'
 				} else {
-					
+
 				}
 				$('#showFooterButton').click(function() {
 					$('#footer').toggleClass('hidden');
