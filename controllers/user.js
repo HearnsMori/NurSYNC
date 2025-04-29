@@ -28,7 +28,7 @@ const create = async (req, res) => {
 	}
 	try {
 		if (!req.userId) {
-			return res.status(401).json({ error: 'Token expired. Login again.' });
+			return res.status(401).json({ logout: 'logout', error: 'Token expired. Login Again.' });
 		}
 		// Prevent creation of secured fields
 		const notAllowedFields = [];
@@ -65,7 +65,7 @@ const read = async (req, res) => {
 	try {
 		console.log('Request Body:', req.body); // Debug log
 		if (!req.userId) {
-			return res.status(401).json({ error: 'Token expired. Login Again.' });
+			return res.status(401).json({ logout: 'logout', error: 'Token expired. Login Again.' });
 		}
 		key = Array.isArray(key) ? key : [key];
 		keyVal = Array.isArray(keyVal) ? keyVal : [keyVal];
@@ -111,7 +111,7 @@ const update = async (req, res) => {
 		console.log('key:', key, 'keyVal:', keyVal); // Debug log
 		try {
 			if (!req.userId) {
-				return res.status(401).json({ error: 'Token expired. Login again.' });
+				return res.status(401).json({ logout: 'logout', error: 'Token expired. Login Again.' });
 			}
 			const notAllowedFields = [];
 			for (let col of field) {
@@ -158,7 +158,7 @@ const deletE = async (req, res) => {
 	console.log('Built Query:', query); // Debug log
 	try {
 		if (!req.userId) {
-			return res.status(401).json({ error: 'Token expired. Login again.' });
+			return res.status(401).json({ logout: 'logout', error: 'Token expired. Login Again.' });
 		}
 		const user = await User.findOne(query);
 		console.log('User found:', user); // Debug log

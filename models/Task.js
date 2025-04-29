@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const Task = new mongoose.Schema({
+	username: {
+		type: String,
+		unique: false,
+		required: true
+	},
 	deadline: {
 		type: Number,
 		unique: false,

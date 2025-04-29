@@ -53,34 +53,34 @@
 			</div>
 			<div class="flexC" style="margin-top: 11vw;">
 				<div class="txtlarge bold">
-					Task
+					
 				</div>
 
 
 <div style="font-family: Arial, sans-serif; background: #f9f9f9; padding: 20px; border-radius: 10px; max-width: 900px; margin: auto; border: 1px solid #ddd;">
   <div style="text-align: center; margin-bottom: 20px;">
-    <div style="width: 100px; height: 100px; margin: auto; background: linear-gradient(#d0f0ff, #a8e0a0); border-radius: 50%; border: 5px solid #2e7d32; background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3c/Gray_circular_cloud_icon.svg'); background-size: cover; background-position: center;"></div>
+    <div style="width: 100px; height: 100px; margin: auto; background: linear-gradient(#d0f0ff, #a8e0a0); border-radius: 50%; border: 5px solid #2e7d32; background-image: url('./default.jpeg'); background-size: cover; background-position: center;"></div>
   </div>
 
-  <h1 style="text-align: center; color: #2e7d32; margin: 10px 0; font-size: 24px;">LAST NAME, FIRST NAME, MIDDLE INITIAL</h1>
+  <h1 id="name" style="text-align: center; color: #2e7d32; margin: 10px 0; font-size: 24px;">LAST NAME, FIRST NAME, MIDDLE INITIAL</h1>
 
   <div style="text-align: center; margin-bottom: 30px;">
-    <textarea style="width: 90%; max-width: 700px; height: 80px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">aaa</textarea>
+    <textarea style="width: 90%; max-width: 700px; height: 80px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">About Me</textarea>
   </div>
 
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin-bottom: 20px;">
     <div style="flex: 1 1 300px; min-width: 250px; border: 1px solid #ccc; padding: 15px; border-radius: 8px; background: #fff;">
       <h3 style="margin-top: 0;">Personal Information</h3>
-      <p><strong>Email Address:</strong> aaa</p>
-      <p><strong>Student ID:</strong> aaa</p>
-      <p><strong>Country:</strong> aaa</p>
-      <p><strong>City/Town:</strong> aaa</p>
-      <p><strong>University:</strong> aaa</p>
+      <p><strong>Email Address:</strong> <span id="emailaddress"> </span></p>
+      <p><strong>Student ID:</strong> <span id="studentid"> </span></p>
+      <p><strong>Country:</strong> <span id="country"> </span></p>
+      <p><strong>City/Town:</strong> <span id="cityortown"> </span></p>
+      <p><strong>University:</strong> <span id="university"> </span></p>
     </div>
 
     <div style="flex: 1 1 300px; min-width: 250px; border: 1px solid #ccc; padding: 15px; border-radius: 8px; background: #fff;">
       <h3 style="margin-top: 0;">Course Details</h3>
-      <p>aaa</p>
+      <p id="coursesclicked"></p>
     </div>
   </div>
 
@@ -201,38 +201,49 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<!-- Then your own script -->
 		<script>
-			function crudData(api, key, keyVal, field, newVal) {
-				alert(api);
-				const token = localStorage.getItem('token');
-				const refreshToken = localStorage.getItem('refreshToken');
-				fetch(`https://nursync.onrender.com/api${api}`, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						'Authorization': token,
-						'refreshAuth': refreshToken
-					},
-					body: JSON.stringify({
-						key: key,
-						keyVal: keyVal,
-						field: field,
-						newVal: newVal
-					})
-				})
-					.then(response => response.json())
-					.then(data => {
-						if (data.error) {
-							alert(data.error);
-						} else {
-							alert("hi");
-							return data.stack;
-						}
-					})
-					.catch(error => {
-						alert('Fetch Error. Try Again Later.');
-					});
-			}
-			
+async function crudData(api, key, keyVal, field, newVal) {
+    try {
+        const token = localStorage.getItem('token');
+        const refreshToken = localStorage.getItem('refreshToken');
+        
+        const response = await fetch(`https://nursync.onrender.com/api${api}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token,
+                'refreshAuth': refreshToken
+            },
+            body: JSON.stringify({
+                key: key,
+                keyVal: keyVal,
+                field: field,
+                newVal: newVal
+            })
+        });
+
+        const data = await response.json();
+        if (data.newToken) {
+        	localStorage.setItem('token', data.newToken);
+        }
+		if (data.logout == "logout") {
+        	localStorage.clear();
+        	window.location.href = '../';
+        }
+        if (data.error) {
+            alert(data.error);
+            return null;
+        } else {
+            return data.stack;
+        }
+        if (data.msg) {
+        	alert(data.msg);
+        	return null;
+       }
+    } catch (error) {
+        alert('Fetch Error. Try Again Later.');
+        return null;
+    }
+}
 			function nav(page) {
 				window.location.href = page;
 				
@@ -246,18 +257,27 @@
 					const stack = await crudData('/user/read', 'username', 'self', [
 						'firstname',
 						'lastname',
-		'middlename',
-		'university',
-		'studentid',
-		'emailaddress',
-		'aboutme',
-		'country',
-		'cityortown',
-		'coursesclicked',
-		'progress'
+						'middlename',
+						'university',
+						'studentid',
+						'emailaddress',
+						'aboutme',
+						'country',
+						'cityortown',
+						'coursesclicked',
+						'progress'
 					], '');
-					alert(stack);
-					alert(stack[0]?.username);
+					
+					const who = stack[0];
+					
+					$('#name').text(`${who.lastname}, ${who.firstname}, ${who.lastname}`);
+					$('#emailaddress').text(`${who.emailaddress}`);
+					$('#studentid').text(`${who.studentid}`);
+					$('#country').text(`${who.country}`);
+					$('#cityortown').text(`${who.cityortown}`);
+					$('#university').text(`${who.university}`);
+					
+					
 				}
 				
 			});
