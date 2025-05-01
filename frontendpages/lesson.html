@@ -6,11 +6,36 @@
 		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel-"stylesheet" href="style.css"/>
+		<script>
+			// Function to show the custom alert
+			function customAlert(message) {
+				var alertBox = document.getElementById("customAlert");
+				var messageBox = document.getElementById("alertMessage");
+				messageBox.textContent = message;
+				alertBox.style.display = 'block';  // Show the alert
+			}
+
+			// Function to close the custom alert
+			function closeAlert() {
+				var alertBox = document.getElementById("customAlert");
+				alertBox.style.display = 'none';  // Hide the alert
+			}
+		</script>
 	</head>
 	<body>
-	<div id="ratio16_9">
+		<!--Custom Alert-->
+		<div id="customAlert" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:300px;background:white;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.2);z-index:1000;">
+			<div style="border-left:8px solid #16a34a;padding:20px;">
+				<div style="font-size:18px;color:#15803d;font-weight:600;">Message</div>
+				<div id="alertMessage" style="font-size:14px;color:#1f2937;margin-top:8px;"></div>
+				<div style="margin-top:16px;text-align:right;">
+					<button onclick="closeAlert()" style="padding:8px 16px;border:none;background:#16a34a;color:white;border-radius:6px;cursor:pointer;">OK</button>
+				</div>
+			</div>
+		</div>
+		<div id="ratio16_9">
 
-	</div>
+		</div>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<!-- Then your own script -->
 		<script>
@@ -19,14 +44,11 @@
 					document.documentElement.requestFullscreen();
 				}
 				const all = $('body');
-				$('body').on('click scroll mousedown mouseup touchstart touchmove touchend', (event) => {
-					fullscreen();
-				}); 
 				if (!localStorage.getItem('token')) {
 					all.hide();
 					nav('../');
 				} else {
-					
+
 				}
 			});
 		</script>

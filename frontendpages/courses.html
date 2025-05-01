@@ -1,60 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Website with Like Button</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: white;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-        }
-        .container {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            background-color: #f4f4f4;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .like-button {
-            position: fixed;
-            top: 3vw;
-            right: 3vw;
-            background-color: #4CAF50; /* Green */
-            color: white;
-            padding: 1vw 4vw;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-        }
-        .like-button:hover {
-            background-color: #45a049;
-        }
-    </style>
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Embedded Website with Like Button</title>
+		<style>
+body {
+	font-family: Arial, sans-serif;
+	background-color: white;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	color: #333;
+}
+		  .container {
+			  width: 100%;
+			  height: 100%;
+			  position: relative;
+			  background-color: #f4f4f4;
+		  }
+		  iframe {
+			  width: 100%;
+			  height: 100%;
+			  border: none;
+		  }
+		  .like-button {
+			  position: fixed;
+			  top: 3vw;
+			  left: 50%;
+			  transform: translate(-50%, -50%);
+			  background-color: #4CAF50; /* Green */
+			  color: white;
+			  padding: 1vw 4vw;
+			  border: none;
+			  border-radius: 5px;
+			  font-size: 16px;
+			  cursor: pointer;
+			  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			  transition: background-color 0.3s ease;
+		  }
+		  .like-button:hover {
+			  background-color: #45a049;
+		  }
+		</style>
+	</head>
+	<body>
 
-<div class="container">
-    <iframe id="course" src="" title="Embedded Website"></iframe>
-    <button class="like-button" onclick="goBack()">Go Back</button>
-</div>
+		<div class="container">
+			<iframe id="course" src="" title="Embedded Website"></iframe>
+			<button class="like-button txtmedium semibold" onclick="goBack()">Go Back</button>
+		</div>
 		<!-- Chat Button -->
-		<div class="txtsmall" onClick="toggleChat();"  style="height: 5vw; position: fixed;  padding: 0.2vw 1vw; background: white; border-radius: 3vw; display: flex; justify-content: center; align-items: center; position: fixed; bottom: 3vw; right: 3vw;">
-			Chat NurSYNC AI <img class="small circle" style="height: 3vw; width: 3vw; background: white; border: solid white 0.3vw; border-radius: 2vw;" src="bot.png">
+		<div class="txtsmall" onClick="toggleChat();"  style="height: 7vw; position: fixed;  padding:  0.1vw; background: white; border-radius: 3vw; display: flex; justify-content: center; align-items: center; position: fixed; bottom: 5vw; right: 5vw;">
+			<img class="small circle" style="height: 7vw; width: 7vw; background: white; border: solid white 0.3vw; border-radius: 2vw;" src="bot.png">
 		</div>
 		<!-- Chat Window -->
 		<div id="chatBox" style="position: fixed; bottom: 70px; right: 20px; width: 300px; height: 400px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px; display: none; flex-direction: column; z-index: 1000;">
@@ -97,58 +98,54 @@
 					const data = await response.json();
 					appendMessage(data.msg, 'bot');
 				} catch (error) {
-					alert(error);
+					customAlert(error);
 					appendMessage("Error: Unable to get response from AI", 'bot');
 				}
 			}
 
 			function appendMessage(message, sender) {
-	const chatArea = document.getElementById("chatArea");
-	const messageDiv = document.createElement("div");
-	messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
-	chatArea.appendChild(messageDiv);
+				const chatArea = document.getElementById("chatArea");
+				const messageDiv = document.createElement("div");
+				messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
+				chatArea.appendChild(messageDiv);
 
-	if (sender === 'bot') {
-		let i = 0;
-		const interval = setInterval(() => {
-			if (i < message.length) {
-				messageDiv.textContent += message.charAt(i);
-				i++;
-				chatArea.scrollTop = chatArea.scrollHeight;
-			} else {
-				clearInterval(interval);
+				if (sender === 'bot') {
+					let i = 0;
+					const interval = setInterval(() => {
+						if (i < message.length) {
+							messageDiv.textContent += message.charAt(i);
+							i++;
+							chatArea.scrollTop = chatArea.scrollHeight;
+						} else {
+							clearInterval(interval);
+						}
+					}, 37);
+				} else {
+					messageDiv.textContent = message;
+					chatArea.scrollTop = chatArea.scrollHeight;
+				}
 			}
-		}, 37);
-	} else {
-		messageDiv.textContent = message;
-		chatArea.scrollTop = chatArea.scrollHeight;
-	}
-}
 		</script>
 
-<script>
-    function goBack() {
-        window.location.href = "../learninghub";
-    }
-    $(document).ready(function() {
-    	function fullscreen() {
+		<script>
+			function goBack() {
+				window.location.href = "../learninghub";
+			}
+			$(document).ready(function() {
+				function fullscreen() {
 					document.documentElement.requestFullscreen();
 				}
-				$('body').on('click scroll mousedown mouseup touchstart touchmove touchend', (event) => {
-					fullscreen();
-				}); 
-				
-		$('#course').attr('src', localStorage.getItem('course'));
-		
-		const all = $('body');
+				$('#course').attr('src', localStorage.getItem('course'));
+
+				const all = $('body');
 				if (!localStorage.getItem('token')) {
 					all.hide();
 					nav('../');
 				} else {
-					
-				}
-	});
-</script>
 
-</body>
+				}
+			});
+		</script>
+
+	</body>
 </html>

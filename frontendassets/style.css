@@ -47,6 +47,9 @@ input, .input{
 	margin: 0 2.5%;
 	
 }
+input:focus {
+	outline: none;
+}
 .signup input, .signup .input{
 	height: 4vw;
 }

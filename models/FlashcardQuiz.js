@@ -10,19 +10,19 @@ const FlashcardQuiz = new mongoose.Schema({
 	term: {
 		type: String,
 		unique: false,
-		required: true,
+		required: false,
 		default: ''
 	},
-	content: {
+	definition: {
 		type: String,
 		unique: false,
-		required: true,
+		required: false,
 		default: ''
 	},
 	category: {
 		type: String,
 		unique: false,
-		required: false,
+		required: true,
 		default: ''
 	}
 });

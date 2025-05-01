@@ -40,6 +40,14 @@ async function nurSyncLearningBot(prompt) {
 // Serve static files (CSS, JS, images, etc.) from frontend folder
 app.use(express.static(path.join(__dirname, 'frontendassets')));
 
+//
+
+
+//fullscreen mode
+app.get('/fullscreen', (req, res) => {
+	res.sendFile(path.join(__dirname, 'frontendpages', 'fullscreen.html'));
+});
+
 // Non-auth routh html
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'frontendpages', 'index.html'));
@@ -86,6 +94,10 @@ app.get('/myself', (req, res) => {
 	res.sendFile(path.join(__dirname, 'frontendpages', 'myself.html'));
 });
 
+//Frontend last part Redirect
+app.get(/^\/(?!api\/|serverstorage\/).*/, (req, res) => {
+  res.redirect('/');
+});
 
 //Backend part
 
@@ -114,7 +126,7 @@ app.use('/api/courses', require('./routes/courses'));
 app.use('/api/notes', require('./routes/notes'));
 
 app.post('/api/bot', async (req, res) => {
-	
+
 	const {prompt} = req.body;
 	console.log(prompt);
 	const msg = await nurSyncLearningBot(prompt);

@@ -11,8 +11,33 @@
 
 		</style>
 
+		<script>
+			// Function to show the custom alert
+			function customAlert(message) {
+				var alertBox = document.getElementById("customAlert");
+				var messageBox = document.getElementById("alertMessage");
+				messageBox.textContent = message;
+				alertBox.style.display = 'block';  // Show the alert
+			}
+
+			// Function to close the custom alert
+			function closeAlert() {
+				var alertBox = document.getElementById("customAlert");
+				alertBox.style.display = 'none';  // Hide the alert
+			}
+		</script>
 	</head>
 	<body>
+		<!--Custom Alert-->
+		<div id="customAlert" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:300px;background:white;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.2);z-index:1000;">
+			<div style="border-left:8px solid #16a34a;padding:20px;">
+				<div style="font-size:18px;color:#15803d;font-weight:600;">Message</div>
+				<div id="alertMessage" style="font-size:14px;color:#1f2937;margin-top:8px;"></div>
+				<div style="margin-top:16px;text-align:right;">
+					<button onclick="closeAlert()" style="padding:8px 16px;border:none;background:#16a34a;color:white;border-radius:6px;cursor:pointer;">OK</button>
+				</div>
+			</div>
+		</div>
 		<div id="ratio16_9">
 			<div class="flexR fixed" style="height: 12vw; top: -1.2vw; left: 5vw; z-index: 3">
 				<div style="width: 10vw; margin-top: 2vw;">
@@ -100,46 +125,49 @@
 					</div>
 				</div>
 			</div>
-			<div class="flexC green" style="margin-top: 3vw; height: auto; padding: 5vw 0; background: #008040;">
+			
+			<!-- Footer and NurSYNC AI -->
+			<div class="flexC green" style="width: 100vw; height: auto; padding: 5vw 0; margin: 0; background: #008040;">
 				<!-- Logo or Title -->
-				<div class="flex" style="color: white; justify-content: left; margin-left: 11vw; font-size: 5vw; font-weight: bold;">
+				<div class="flex" style="color: white; justify-content: left; padding-left: 6vw; font-size: 4.5vw; font-weight: bold;">
 					NurSYNC
 				</div>
 
-
-
+				<!-- Optional Links -->
+				<div class="flex" style="justify-content: left; padding-left: 6vw; margin-top: 3vw;">
+					<a style="color: #ffffff; text-decoration: underline;" href="https://mail.google.com/mail/?view=cm&fs=1&to=your-email@gmail.com&su=Subject%20Here&body=Message%20Body%20Here" target="_blank">Send me a message</a>
+				</div>
 
 				<!-- Line -->
 				<hr style="border: 0.2px solid #CCCCCC; width: 90%; margin-top: 5vw;"/>
 
 				<!-- Extra Info: Company Address or Slogan -->
-				<div class="flex" style="color: #dddddd; justify-content: left; margin-left: 11vw; font-size: 3vw; margin-top: 2vw;">
-					<span>Philippines</span>
+				<div class="flex" style="color: #dddddd; justify-content: left; padding-left: 6vw; font-size: 2.6vw; margin-top: 2vw;">
+					Philippines
 				</div>
 
 				<!-- Copyright -->
-				<div class="flex" style="color: #dddddd; justify-content: left; margin-left: 11vw; font-size: 3vw; margin-top: 2vw;">
+				<div class="flex" style="color: #dddddd; justify-content: left; padding-left: 6vw; font-size: 2.6vw; margin-top: 2vw;">
 					&#169; 2025 NurSYNC
 				</div>
 			</div>
-
-
 		</div>
+
 		<!-- Chat Button -->
-		<div class="txtsmall" onClick="toggleChat();"  style="height: 5vw; position: fixed;  padding: 0.2vw 1vw; background: white; border-radius: 3vw; display: flex; justify-content: center; align-items: center; position: fixed; bottom: 3vw; right: 3vw;">
-			Chat NurSYNC AI <img class="small circle" style="height: 3vw; width: 3vw; background: white; border: solid white 0.3vw; border-radius: 2vw;" src="bot.png">
+		<div class="txtsmall" onClick="toggleChat();"  style="padding: 0 1vw; background: white; border-radius: 3vw; display: flex; justify-content: center; align-items: center; position: fixed; bottom: 3vw; right: 3vw;">
+			Chat NurSYNC AI <img class="small circle" style="background: white; border: solid white 0.3vw; border-radius: 2vw;" src="bot.png">
 		</div>
 		<!-- Chat Window -->
-		<div id="chatBox" style="position: fixed; bottom: 70px; right: 20px; width: 300px; height: 400px; background-color: #fff; border: 1px solid #ccc; border-radius: 10px; display: none; flex-direction: column; z-index: 1000;">
-			<div id="chatBoxHeader" style="background-color: #007bff; color: white; padding: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; text-align: center; font-size: 18px;">
+		<div id="chatBox" style="padding-top: 4vw; position: fixed; bottom: 7vw; right: 2vw; width: 33vw; height: 40vw; background-color: #fff; border: 0.5vw solid #ccc; border-radius: 2vw; display: none; flex-direction: column; z-index: 10;">
+			<div id="chatBoxHeader txtsmall" style="position: absolute; margin-bottom: 37vw; height: 4vw; background-color: #007bff; color: white; padding: 1vw 2vw; border-radius: 1vw; text-align: center;">
 				NurSYNC AI
 			</div>
-			<div id="chatArea" style="flex-grow: 1; padding: 10px; overflow-y: auto; border-bottom: 1px solid #ccc;">
+			<div id="chatArea" style="flex-grow: 1; padding: 1vw; overflow-y: auto; border-bottom: 0.5vw solid #ccc; width: 100%;">
 				<!-- Chat messages will be appended here -->
 			</div>
-			<input type="text" id="userInput" placeholder="Type a message..." style="width: 90%; padding: 10px; border: none; border-top: 1px solid #ccc; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;" onkeydown="if(event.key === 'Enter'){sendMessage()}">
+			<input type="text" id="userInput" placeholder="Type a message..." style="font-size: 2vw; width: 84%; padding: 1vw; border: none; border-radius: 1vw; " onkeydown="if(event.key === 'Enter'){sendMessage()}">
 		</div>
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 		<!-- JavaScript for toggling the chat window and sending messages -->
 		<script>
 			function toggleChat() {
@@ -170,33 +198,32 @@
 					const data = await response.json();
 					appendMessage(data.msg, 'bot');
 				} catch (error) {
-					alert(error);
 					appendMessage("Error: Unable to get response from AI", 'bot');
 				}
 			}
 
 			function appendMessage(message, sender) {
-	const chatArea = document.getElementById("chatArea");
-	const messageDiv = document.createElement("div");
-	messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
-	chatArea.appendChild(messageDiv);
+				const chatArea = document.getElementById("chatArea");
+				const messageDiv = document.createElement("div");
+				messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
+				chatArea.appendChild(messageDiv);
 
-	if (sender === 'bot') {
-		let i = 0;
-		const interval = setInterval(() => {
-			if (i < message.length) {
-				messageDiv.textContent += message.charAt(i);
-				i++;
-				chatArea.scrollTop = chatArea.scrollHeight;
-			} else {
-				clearInterval(interval);
+				if (sender === 'bot') {
+					let i = 0;
+					const interval = setInterval(() => {
+						if (i < message.length) {
+							messageDiv.textContent += message.charAt(i);
+							i++;
+							chatArea.scrollTop = chatArea.scrollHeight;
+						} else {
+							clearInterval(interval);
+						}
+					}, 37);
+				} else {
+					messageDiv.textContent = message;
+					chatArea.scrollTop = chatArea.scrollHeight;
+				}
 			}
-		}, 37);
-	} else {
-		messageDiv.textContent = message;
-		chatArea.scrollTop = chatArea.scrollHeight;
-	}
-}
 		</script>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<!-- Then your own script -->
@@ -278,7 +305,7 @@
 					sem: "First Semester",
 					progress: 0
 				},
-				
+
 				{
 					level: 2,
 					url: "https://nursync.super.site/homepage/learning-hub/care-of-mother-child-adolescents-well-clients",
@@ -319,7 +346,7 @@
 					sem: "Second Semester",
 					progress: 0
 				},
-				
+
 				//level 3 - First Semester (Data from Image)
 				{
 					level: 3,
@@ -344,24 +371,27 @@
 			courses.map(course => {
 
 				const cardHtml = `
-		  <a onClick="localStorage.setItem('course', '`+course.url+`'); window.location.href = '../course';" class="card" style="text-decoration: none; color: black; margin: 0.5vw 0; background: #fff; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); padding: 16px; display: flex; flex-direction: column; justify-content: space-between; width: 18vw;">
-				<div class="card-content" style="display: flex; flex-direction: column; gap: 1vw; height: 21vw;">
-					 <div class="card-title" style="font-weight: bold; font-size: 1.5vw;">${course.title}</div>
-					 <div class="card-nm1" style="font-size: 14px; color: #555;">${course.aaa}</div>
-					 <div class="card-semester" style="font-size: 14px; color: #555;">${course.sem}</div>
-					 <div class="card-progress" style="font-size: 12px; color: #555;">
-						  ${course.progress}% Progress 
-						  <div style="background: #ddd; height: 8px; width: 100%; border-radius: 4px; margin-top: 8px;">
-								<div style="background: #4caf50; height: 100%; width: ${course.progress}%; border-radius: 4px;"></div>
-						  </div>
-					 </div>
-				</div>
-		  </a>
-	 `;
+  <a onClick="localStorage.setItem('course', '${course.url}'); window.location.href = '../course';" 
+     class="card" 
+     style="text-decoration: none; color: black; margin: 0.5vw 0; background: #fff; border: 0.07vw solid #ddd; border-radius: 0.6vw; box-shadow: 0 0.3vw 0.45vw rgba(0, 0, 0, 0.1); padding: 1.2vw; display: flex; flex-direction: column; justify-content: space-between; width: 18vw;">
+    
+    <div class="card-content" style="display: flex; flex-direction: column; gap: 1vw; height: 21vw;">
+      <div class="card-title" style="font-weight: bold; font-size: 1.7vw;">${course.title}</div>
+      <div class="card-nm1" style="font-size: 1.3vw; color: #555;">${course.aaa}</div>
+      <div class="card-semester" style="font-size: 1.3vw; color: #555;">${course.sem}</div>
+      <div class="card-progress" style="font-size: 1.3vw; color: #555;">
+        ${course.progress}% Progress 
+        <div style="background: #ddd; height: 0.6vw; width: 100%; border-radius: 0.3vw; margin-top: 0.6vw;">
+          <div style="background: #4caf50; height: 100%; width: ${course.progress}%; border-radius: 0.3vw;"></div>
+        </div>
+      </div>
+    </div>
+  </a>
+`;
 
 				// jQuery way to append
-				
-				
+
+
 				$(`#level${course.level}`).append(cardHtml);
 			});
 
@@ -490,24 +520,20 @@
 			console.log(courses); // You can use this to see the result
 			function nav(page) {
 				window.location.href = page;
-				
+
 			}
 			$(document).ready(function() {
 				const all = $('body');
 				function fullscreen() {
 					document.documentElement.requestFullscreen();
 				}
-				$('body').on('click scroll mousedown mouseup touchstart touchmove touchend', (event) => {
-					fullscreen();
-				}); 
-				
 				if (!localStorage.getItem('token')) {
 					all.hide();
 					nav('../');
 				} else {
 					
 				}
-				
+
 			});
 		</script>
 	</body>
