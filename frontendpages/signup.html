@@ -417,7 +417,7 @@
 					.then(response => response.json())
 					.then(data => {
 						if (data.error) {
-							customAlert(data.msg);
+							customAlert(data.error);
 						} else {
 							customAlert("Successfully created an Account. You may now Log-in.");
 							window.location.href = '../login';
