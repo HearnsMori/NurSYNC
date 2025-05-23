@@ -1,39 +1,45 @@
-const authMiddle = require('./middles/authMiddle');
+require('./kafka');
 
-require('dotenv').config();
+const authMiddle = require('./middles/authMiddle');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const cors = require('cors');
 const express = require('express');
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
+const { HttpsProxyAgent } = require('https-proxy-agent');
+const { HttpProxyAgent } = require('http-proxy-agent');
+require('dotenv').config();
+
 const app = express();
 
 const PORT = process.env.PORT || 10000;
+
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 async function nurSyncLearningBot(prompt) {
-  try {
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+	try {
+		const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
-    // Add a prompt context that guides the bot to respond as a learning assistant
-    const learningContextPrompt = `You are NurSYNC AI, an intelligent assistant designed to help users learn and answer questions related to education, self-improvement, and knowledge especially for Nursing Related. Respond to the user's query in a way that encourages learning, understanding, and knowledge-sharing. Keep your answers into one to two paragraph.`;
+		// Add a prompt context that guides the bot to respond as a learning assistant
+		const learningContextPrompt = `You are NurSYNC AI, an intelligent assistant designed to help users learn and answer questions related to education, self-improvement, and knowledge especially for Nursing Related. Respond to the user's query in a way that encourages learning, understanding, and knowledge-sharing. Keep your answers into one to two paragraph.`;
 
-    // Combine the learning context with the user’s prompt
-    const fullPrompt = `${learningContextPrompt} \nUser: ${prompt}\nAI:`;
+		// Combine the learning context with the user’s prompt
+		const fullPrompt = `${learningContextPrompt} \nUser: ${prompt}\nAI:`;
 
-    // Generate content based on the combined prompt
-    const result = await model.generateContent(fullPrompt);
-    const response = await result.response;
-    const text = response.text();
+		// Generate content based on the combined prompt
+		const result = await model.generateContent(fullPrompt);
+		const response = await result.response;
+		const text = response.text();
 
-    // Return the generated text as the bot's response
-    return text;
-  } catch (err) {
-    console.error("Gemini API error:", err);
-    return "Error from NurSYNC AI"; // Fallback error message
-  }
+		// Return the generated text as the bot's response
+		return text;
+	} catch (err) {
+		console.error("Gemini API error:", err);
+		return "Error from NurSYNC AI"; // Fallback error message
+	}
 }
 
 //Frontend part
@@ -96,7 +102,7 @@ app.get('/myself', (req, res) => {
 
 //Frontend last part Redirect
 app.get(/^\/(?!api\/|serverstorage\/).*/, (req, res) => {
-  res.redirect('/');
+	res.redirect('/');
 });
 
 //Backend part
@@ -118,7 +124,6 @@ app.use(express.urlencoded({ extended: true}));
 app.use('/serverstorage', express.static('./serverstorage'));
 
 app.use('/api/auth', require('./routes/auth'));
-
 app.use('/api/user', require('./routes/user'));
 app.use('/api/task', require('./routes/task'));
 app.use('/api/flashcardquiz', require('./routes/flashcardquiz'));
@@ -126,13 +131,26 @@ app.use('/api/courses', require('./routes/courses'));
 app.use('/api/notes', require('./routes/notes'));
 
 app.post('/api/bot', async (req, res) => {
-
 	const {prompt} = req.body;
 	console.log(prompt);
 	const msg = await nurSyncLearningBot(prompt);
 	res.json({msg});
 });
 
+//microservices c++
+//For https
+const proxyAgent = new HttpsProxyAgent('http://localhost:3128'); // Squid Proxy
+//For http
+const proxyAgent2 = new HttpProxyAgent('http://localhost:3128'); // Squid Proxy
+
+app.use('/api/microservices/parallelgpt', createProxyMiddleware({
+	target: 'https://google.com', // Target HTTPS site
+	changeOrigin: true,
+	agent: proxyAgent,
+	secure: false // Ignore SSL certificate issues
+}));
+
+//DB connection and logic
 const User = require('./models/User');
 const Task = require('./models/Task');
 const FlashcardQuiz = require('./models/FlashcardQuiz');
