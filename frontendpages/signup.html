@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			NurSYNC
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="style.css"/>
+		<link rel="icon" type="image/png" href="logo.png"/>
+		<style>
+#footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	z-index: 3;
+	height: auto;
+	padding: 3vw 0;
+	background: #008040;
+	transition: bottom 0.3s ease;
+}
+
+			#footer.hidden {
+				bottom: -100%; /* Hide the footer by moving it off screen */
+			}
+
+			#showFooterButton {
+				position: fixed;
+				bottom: 10px;
+				right: 10px;
+				background: #008040;
+				color: white;
+				padding: 10px;
+				border-radius: 5px;
+				cursor: pointer;
+				z-index: 4;
+			}
+		</style>
+		<script>
+			// Function to show the custom alert
+			function customAlert(message) {
+				var alertBox = document.getElementById("customAlert");
+				var messageBox = document.getElementById("alertMessage");
+				messageBox.textContent = message;
+				alertBox.style.display = 'block';  // Show the alert
+			}
+
+			// Function to close the custom alert
+			function closeAlert() {
+				var alertBox = document.getElementById("customAlert");
+				alertBox.style.display = 'none';  // Hide the alert
+			}
+		</script>
+	</head>
+	<body>
+		<!--Custom Alert-->
+		<div id="customAlert" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:300px;background:white;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.2);z-index:1000;">
+			<div style="border-left:8px solid #16a34a;padding:20px;">
+				<div style="font-size:18px;color:#15803d;font-weight:600;">Message</div>
+				<div id="alertMessage" style="font-size:14px;color:#1f2937;margin-top:8px;"></div>
+				<div style="margin-top:16px;text-align:right;">
+					<button onclick="closeAlert()" style="padding:8px 16px;border:none;background:#16a34a;color:white;border-radius:6px;cursor:pointer;">OK</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="ratio16_9" style="overflow-y: auto; height: 100vh; width: 100vw; padding-bottom: 7vw; z-index: 3; background: url('signup.png')">
+			<div class="flexR signup" style="position: block; z-index: 3; background: rgba(255,255,255,1); border-radius: 3vw; margin: 2vw 8vw; width: 84vw; height: 55vw;">
+				<div class="divOnCenter">
+					<img style="opacity: 1; height: 15vw; width: 25vw;" src="greenlettering.png"/>
+				</div>
+				<div class="flexC" style="width: 48vw; margin-right: 11vw;">
+					<div class="txtsemilarge bold" style="margin-top: 3vw;">
+						Create an Account
+					</div>
+					<div class="txtsemimedium semibold" style="margin-top: 1vw;">
+						Already have an Account? <a href="../login">Log-in</a>
+					</div>
+					<div class="flexR" style="padding: 0 1vw; width: 100%; margin-top: 2vw;">
+						<div class="" style="margin-left: 0">
+							<input id="firstname" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="First Name" />
+							<small id="firstname-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+						<div class="">
+							<input id="lastname" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="Last Name" />
+							<small id="lastname-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+						<div class="">
+							<input id="middlename" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="Middle Name" />
+							<small id="middlename-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div class="flexR" style="padding: 0 1vw; width: 100%; margin-top: 2vw;">
+						<div class="">
+							<input id="university" class="txtmedium" style="padding-left: 2vw;" type="text" placeholder="University" />
+							<small id="university-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+						<div class="">
+							<input id="studentid" class="txtmedium" style="padding-left: 2vw;" type="number" placeholder="Student ID" />
+							<small id="studentid-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
+						<div class="divOnCenter">
+							<input id="emailaddress" class="txtmedium"  style="padding-left: 2vw;" type="text" placeholder="Email Address"/>
+							<small id="emailaddress-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
+						<div class="divOnCenter">
+							<input id="username" class="txtmedium"  style="padding-left: 2vw;" type="text" placeholder="Username"/>
+							<small id="username-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
+						<div class="divOnCenter">
+							<input id="password" class="txtmedium"  style="padding-left: 2vw;" type="password" placeholder="Password"/>
+							<small id="password-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
+						<div class="divOnCenter">
+							<input id="confirmpassword" class="txtmedium"  style="padding-left: 2vw;" type="password" placeholder="Confirm Password"/>
+							<small id="confirmpassword-error" style="padding: 0 1vw; color: red; display: none;"></small>
+						</div>
+					</div>
+					<div style="padding: 0 0.3vw; width: 100%; margin-top: 1vw">
+						<div class="divOnCenter input flexR">
+							<input id="agree" type="checkbox" class="customcheckbox" style="display: inline;" />
+							<div  class="txtmedium" style="display: inline;">
+								Agree to terms, policy, and privacy 
+							</div>
+						</div>
+						<small id="agree-error" style="padding: 0 1vw; color: red; display: none;"></small>
+
+					</div>
+
+					<div style="width: 100%; margin: 2vw 0;">
+
+						<button type="button" onClick="signup();" class="green txtmedium" style="color: white; width: 90%; height: 5vw; margin: 0 5%; border-radius: 4vw;">
+							Register
+						</button>
+
+					</div>
+
+				</div>
+			</div>
+			
+			<!-- Footer and NurSYNC AI-->
+			<!-- Footer -->
+			<div id="footer" class="flexC green hidden">
+				<!-- Logo or Title -->
+				<div class="flex" style="color: white; justify-content: left; padding-left: 6vw; font-size: 4vw; font-weight: bold;">
+					NurSYNC
+				</div>
+				<!-- Optional Links -->
+				<div class="flex" style="justify-content: left; padding-left: 6vw; margin-top: 3vw;">
+					<a href="../" style="color: #ffffff; text-decoration: underline; margin-right: 5vw;">Home</a>
+					<a href="./signup" style="color: #ffffff; text-decoration: underline; margin-right: 5vw;">Signup</a>
+					<a style="color: #ffffff; text-decoration: underline;" href="https://mail.google.com/mail/?view=cm&fs=1&to=your-email@gmail.com&su=Subject%20Here&body=Message%20Body%20Here" target="_blank">Send me a message</a>
+				</div>
+
+				<!-- Line -->
+				<hr style="border: 0.2px solid #CCCCCC; width: 90%; margin-top: 5vw;"/>
+
+				<!-- Copyright -->
+				<div class="flex" style="color: #dddddd; justify-content: left; padding-left: 6vw; font-size: 2vw; margin-top: 2vw;">
+					&#169; 2025 NurSynergy
+				</div>
+			</div>
+		</div>
+		<!-- Chat Button -->
+		<div class="txtsmall" onClick="toggleChat();"  style="z-index: 373; padding: 0 1vw; background: white; border-radius: 3vw; display: flex; justify-content: center; align-items: center; position: fixed; bottom: 3vw; left: 3vw;">
+			Chat NurSYNC AI <img class="small circle" style="background: white; border: solid white 0.3vw; border-radius: 2vw;" src="bot.png">
+		</div>
+		<!-- Chat Window -->
+		<div id="chatBox" style="z-index: 373;  padding-top: 4vw; position: fixed; bottom: 7vw; left: 2vw; width: 33vw; height: 40vw; background-color: #fff; border: 0.5vw solid #ccc; border-radius: 2vw; display: none; flex-direction: column; z-index: 10;">
+			<div id="chatBoxHeader txtsmall" style="position: absolute; margin-bottom: 37vw; height: 4vw; background-color: #007bff; color: white; padding: 1vw 2vw; border-radius: 1vw; text-align: center;">
+				NurSYNC AI
+			</div>
+			<div id="chatArea" style="flex-grow: 1; padding: 1vw; overflow-y: auto; border-bottom: 0.5vw solid #ccc; width: 100%;">
+				<!-- Chat messages will be appended here -->
+			</div>
+			<input type="text" id="userInput" placeholder="Type a message..." style="font-size: 2vw; width: 84%; padding: 1vw; border: none; border-radius: 1vw; " onkeydown="if(event.key === 'Enter'){sendMessage()}">
+		</div>
+
+		<!-- JavaScript for toggling the chat window and sending messages -->
+		<script>
+			function toggleChat() {
+				const chatBox = document.getElementById("chatBox");
+				chatBox.style.display = chatBox.style.display === "none" ? "flex" : "none";
+			}
+
+			async function sendMessage() {
+				const userInput = document.getElementById("userInput");
+				const messageText = userInput.value.trim();
+				if (messageText === "") return;
+
+				// Append user message
+				appendMessage(messageText, 'user');
+
+				// Clear the input field
+				userInput.value = "";
+
+				// Send the prompt to the server and get the response
+				try {
+					const response = await fetch('https://nursync.onrender.com/api/bot', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({ prompt: messageText }),
+					});
+					const data = await response.json();
+					appendMessage(data.msg, 'bot');
+				} catch (error) {
+					appendMessage("Error: Unable to get response from AI", 'bot');
+				}
+			}
+
+			function appendMessage(message, sender) {
+				const chatArea = document.getElementById("chatArea");
+				const messageDiv = document.createElement("div");
+				messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
+				chatArea.appendChild(messageDiv);
+
+				if (sender === 'bot') {
+					let i = 0;
+					const interval = setInterval(() => {
+						if (i < message.length) {
+							messageDiv.textContent += message.charAt(i);
+							i++;
+							chatArea.scrollTop = chatArea.scrollHeight;
+						} else {
+							clearInterval(interval);
+						}
+					}, 37);
+				} else {
+					messageDiv.textContent = message;
+					chatArea.scrollTop = chatArea.scrollHeight;
+				}
+			}
+		</script><!--End of Footer and NurSYNC AI -->
+
+		<!-- Sticky Button to Show Footer -->
+		<div id="showFooterButton">Show Footer</div>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script>
+			function crudData(api, key, keyVal, field, newVal) {
+				const token = localStorage.getItem('token');
+				const refreshToken = localStorage.getItem('refreshToken');
+				fetch(`https://your-ai-endpoint.com/api${api}`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': token,
+						'refreshAuth': refreshToken
+					},
+					body: JSON.stringify({
+						key: key,
+						keyVal: keyVal,
+						field: field,
+						newVal: newVal
+					})
+				})
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) {
+							console.error('Server Error:', data.msg);
+						} else {
+							//data.datatoget
+						}
+					})
+					.catch(error => {
+						console.error('Fetch Error:', error);
+					});
+			}
+			function signup() {
+				var firstname = $('#firstname').val();
+				var lastname = $('#lastname').val();
+				var middlename = $('#middlename').val();
+				var university = $('#university').val();
+				var studentid = $('#studentid').val();
+				var emailaddress = $('#emailaddress').val();
+				var username = $('#username').val();
+				var password = $('#password').val();
+				var confirmpassword = $('#confirmpassword').val();
+
+
+				if (!firstname.trim()) {
+					$('#firstname-error').text('First Name must not be empty.').show();
+					return;
+				} else if (firstname.includes(' ')) {
+					$('#firstname-error').text('First Name must not have white space.').show();
+					return;
+				} else if (firstname.length < 2) {
+					$('#firstname-error').text('First Name must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#firstname-error').hide();
+				}
+
+				if (!lastname.trim()) {
+					$('#lastname-error').text('Last Name must not be empty.').show();
+					return;
+				} else if (lastname.includes(' ')) {
+					$('#lastname-error').text('Last Name must not have white space.').show();
+					return;
+				} else if (lastname.length < 2) {
+					$('#lastname-error').text('Last Name must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#lastname-error').hide();
+				}
+
+				if (!university.trim()) {
+					$('#university-error').text('Univeristy must not be empty.').show();
+					return;
+				} else if (university.length < 2) {
+					$('#university-error').text('Univeristy must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#university-error').hide();
+				}
+
+				if (!studentid.trim()) {
+					$('#studentid-error').text('Student ID must not be empty.').show();
+					return;
+				} else if (studentid.includes(' ')) {
+					$('#studentid-error').text('Student ID must not have white space.').show();
+					return;
+				} else if (studentid.length < 2) {
+					$('#studentid-error').text('Student ID must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#studentid-error').hide();
+				}
+
+				if (!emailaddress.trim()) {
+					$('#emailaddress-error').text('Email Address must not be empty.').show();
+					return;
+				} else if (emailaddress.includes(' ')) {
+					$('#emailaddress-error').text('Email Address must not have white space.').show();
+					return;
+				} else if (emailaddress.length < 2) {
+					$('#emailaddress-error').text('Email Address must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#emailaddress-error').hide();
+				}
+
+
+
+				if (!username.trim()) {
+					$('#username-error').text('Username must not be empty.').show();
+					return;
+				} else if (username.includes(' ')) {
+					$('#username-error').text('Username must not have white space.').show();
+					return;
+				} else if (username.length < 2) {
+					$('#username-error').text('Username must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#username-error').hide();
+				}
+
+				if (!password.trim()) {
+					$('#password-error').text('Password must not be empty.').show();
+					return;
+				} else if (password.includes(' ')) {
+					$('#password-error').text('Password must not have white space.').show();
+					return;
+				} else if (password.length < 2) {
+					$('#password-error').text('Password must be three (3) characters long.').show();
+					return;
+				} else {
+					$('#password-error').hide();
+				}
+
+				if (!password) {
+					$('#password-error').text('Password must not be empty').show();
+					return
+				} else if (!confirmpassword) {
+					$('#confirmpassword-error').text('Confirm Password must match your password.').show();
+					return;
+				} else if (password != confirmpassword ) {
+					$('#confirmpassword-error').text('Confirm Password does not match the password.').show();
+					return;
+				} else {
+					$('#password-error').hide();
+					$('#confirmpassword-error').hide();
+				}
+
+				if (!($('#agree').is(':checked'))) {
+					$('#agree-error').text('To start user must agree to the terms, policy, and privacy of the application.').show();
+					return
+				} else {
+					$('#agree-error').hide();
+				}
+
+				fetch('https://nursync.onrender.com/api/auth/signup', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({
+						firstname,
+						lastname,
+						middlename,
+						university, 
+						studentid,
+						emailaddress,
+						username,
+						password
+					})
+				})
+					.then(response => response.json())
+					.then(data => {
+						if (data.error) {
+							customAlert(data.error);
+						} else {
+							customAlert("Successfully created an Account. You may now Log-in.");
+							window.location.href = '../login';
+						}
+					})
+					.catch(error => {
+						customAlert(`Fetch Error: Try Again. ${error}`);
+					});
+			}
+			// Function to toggle footer visibility
+			$(document).ready(function() {
+				const all = $('body');
+				function fullscreen() {
+					document.documentElement.requestFullscreen();
+				}
+				if (localStorage.getItem('token')) {
+					all.hide();
+					window.location.href = '../'
+				} else {
+
+				}
+				$('#showFooterButton').click(function() {
+					$('#footer').toggleClass('hidden');
+					// Change button text based on footer visibility
+					if ($('#footer').hasClass('hidden')) {
+						$('#showFooterButton').text('Show Footer');
+					} else {
+						$('#showFooterButton').text('Hide Footer');
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

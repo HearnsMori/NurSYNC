@@ -1,0 +1,207 @@
+/* For 16:9 Ratio */
+#ratio16_9 {
+	width: 100vw;
+	background: white;
+	
+	
+}
+/* Hide scrollbar but allow scroll */
+* {
+	user-select: none;
+	overflow: auto; /* allow scroll */
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none;  /* IE 10+ */
+	color: black
+}
+*::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Edge */
+}
+
+* {
+	overflow: scroll;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	align-items: center;
+	justify-content: center;
+}
+html, body {
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	font-size: 2vw;
+}
+button {
+	border: none;
+}
+img {
+	height: 100%;
+	width: 100%;
+}
+input, .input{
+	width: 95%;
+	height: 5vw;
+	border: solid black 0.2vw;
+	border-radius: 2vw;
+	padding: 1vw;
+	margin: 0 2.5%;
+	
+}
+input:focus {
+	outline: none;
+}
+.signup input, .signup .input{
+	height: 4vw;
+}
+li {
+	padding: 0vw;
+	margin: 0vw;
+}
+
+#header {
+	position: fixed;
+	width: 100vw;
+	height: 6vw;
+	background: #026E2C;
+	display: flex;
+	flex-flow: row nowrap;
+	top: 0;
+	left: 0;
+}
+#header div {
+	display: flex;
+	flex-flow: row nowrap;
+	height: 100%;
+	font-size: 1.5rem;
+	color: white;
+	font-weight: 500;
+}
+
+.inviBtn {
+	background: rgba(0,0,0,0);
+}
+.signinBtn {
+	background: #FFFFFF;
+	border-radius: 1vw;
+	height: 4vw;
+	width: 12vw;
+	margin-right: 1vw;
+	color: black;
+	font-weight: 500;
+	font-size: 2vw;
+}
+.userMessage {
+	justify-content: right;
+	background: green;
+	color: white;
+	border-radius: 0.4vw;
+	padding-left: 0.5vw;
+}
+.filter div {
+	margin: 1vw 2vw;
+}
+/*common usage*/
+/*text*/
+.semibold {
+	font-weight: 500;
+}
+.bold {
+	font-weight: 700;
+}
+.underline {
+	text-decoration: underline;
+}
+.txtsmall {
+	font-size: 1vw;
+}
+.txtsemimedium {
+	font-size: 1.5vw;
+}
+.txtmedium {
+	font-size: 2vw;
+}
+.txtsemilarge {
+	font-size: 2.5vw;
+}
+.txtlarge {
+	font-size: 3vw;
+}
+.txtgreen {
+	color: #026E2C;
+}
+
+/*color*/
+.white {
+	background: #FFFFFF;
+}
+.green {
+	background: #026E2C;
+}
+
+/*shape*/
+.circle {
+	border-radius: 50%;
+}
+/*size*/
+.small {
+	height: 5vw;
+	width: 5vw;
+}
+.medium {
+	height: 7vw;
+	width: 7vw;
+}
+.large {
+	height: 9vw;
+	width: 9vw;
+}
+/*margin*/
+.smallMarginLeft {
+	margin-left: 1vw;
+}
+.smallMarginRight {
+	margin-right: 1vw;
+}
+
+/*padding*/
+
+/*position*/
+.fixed {
+	position: fixed;
+	z-index: 2;
+}
+.divOnCenter {
+	margin: auto;
+}
+
+/*flex*/
+.flex {
+	flex: 1;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.flexR {
+	display: flex;
+	flex-flow: row;
+	height: 100%;
+}
+.flexC {
+	display: flex;
+	flex-flow: column;
+	width: 100%;
+}
+
+/*custom*/
+.customcheckbox {
+	display: inline;
+	position: relative;
+  width: 3vw;
+  height: 3vw;
+  border: 0.2vw solid #000;
+  border-radius: 1vw;
+  cursor: pointer;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fullscreen</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        embed {
+            position: fixed;
+            border: none;
+            height: 100vh;
+            width: 100vw;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            position: fixed;
+            height: 100vh;
+            width: 150vw;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            background: white;
+            z-index: 737;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <embed src="/"></embed>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function nav(page) {
+            window.location.href = page;
+        }
+
+        function fullscreen() {
+            const div = document.getElementById('div');
+            div.style.zIndex = '0';
+            document.documentElement.requestFullscreen().catch(err => {
+                console.warn('Fullscreen error:', err);
+            });
+        }
+
+        function checkFullScreen() {
+            const div = document.getElementById('div');
+            const isFullScreen = (window.innerHeight == screen.height && window.innerWidth == screen.width);
+            if (isFullScreen) {
+                div.style.zIndex = '0';
+            } else {
+                div.style.zIndex = '737';
+            }
+        }
+
+        $(document).ready(function () {
+            $('body').on('click', () => {
+				fullscreen();
+			});
+        });
+		
+        window.addEventListener('resize', () => setTimeout(checkFullScreen, 37));
+        window.addEventListener('orientationchange', () => setTimeout(checkFullScreen, 37));
+        
+    </script>
+</body>
+</html>

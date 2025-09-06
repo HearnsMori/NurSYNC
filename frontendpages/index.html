@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			NurSYNC
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="stylesheet" href="style.css"/>
+		<link rel="icon" type="image/png" href="logo.png"/>
+		<style>
+
+		</style>
+		<script>
+			// Function to show the custom alert
+			function customAlert(message) {
+				var alertBox = document.getElementById("customAlert");
+				var messageBox = document.getElementById("alertMessage");
+				messageBox.textContent = message;
+				alertBox.style.display = 'block';  // Show the alert
+			}
+
+			// Function to close the custom alert
+			function closeAlert() {
+				var alertBox = document.getElementById("customAlert");
+				alertBox.style.display = 'none';  // Hide the alert
+			}
+		</script>
+	</head>
+	<body>
+		<!--Custom Alert-->
+		<div id="customAlert" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);width:300px;background:white;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.2);z-index:1000;">
+			<div style="border-left:8px solid #16a34a;padding:20px;">
+				<div style="font-size:18px;color:#15803d;font-weight:600;">Message</div>
+				<div id="alertMessage" style="font-size:14px;color:#1f2937;margin-top:8px;"></div>
+				<div style="margin-top:16px;text-align:right;">
+					<button onclick="closeAlert()" style="padding:8px 16px;border:none;background:#16a34a;color:white;border-radius:6px;cursor:pointer;">OK</button>
+				</div>
+			</div>
+		</div>
+		<div id="ratio16_9">
+			<div class="flexR fixed" style="height: 12vw; top: -1.2vw; left: 5vw; ">
+				<div style="width: 10vw; margin-top: 2vw;">
+					<img class="circle medium" style="background: white; border: solid white 0.3vw;" src="logo.png">
+				</div>
+				<div class="flexC" style="justify-content: left; align-items: left; ">
+					<img style="height: 8vw; width: 17vw;" src="./lettering.png"/>
+				</div>
+			</div>
+			<div id="header" class="green"> 
+				<div class="flex">
+
+				</div>
+				<div>
+					<button class="signinBtn white txtsemimedium" onClick="nav('/signup');">
+						Sign-up
+					</button>
+				</div>
+				<div>
+					<button class="inviBtn smallMarginRight">
+						<svg fill="#FFFFFF" height="4vw" width="4vw" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-126.98 -126.98 742.36 742.36" xml:space="preserve" stroke="#FFFFFF" stroke-width="48.839999999999996"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M0,203.25c0,112.1,91.2,203.2,203.2,203.2c51.6,0,98.8-19.4,134.7-51.2l129.5,129.5c2.4,2.4,5.5,3.6,8.7,3.6 s6.3-1.2,8.7-3.6c4.8-4.8,4.8-12.5,0-17.3l-129.6-129.5c31.8-35.9,51.2-83,51.2-134.7c0-112.1-91.2-203.2-203.2-203.2 S0,91.15,0,203.25z M381.9,203.25c0,98.5-80.2,178.7-178.7,178.7s-178.7-80.2-178.7-178.7s80.2-178.7,178.7-178.7 S381.9,104.65,381.9,203.25z"></path> </g> </g> </g></svg>
+					</button>
+				</div>
+			</div>
+			<div style="margin-top: 3%; width: 100%; height: 51vw; background: white">
+				<img style="height: 99%; margin: 0;" src="homepage.png">
+			</div>
+			<div class="flexR" style="width: 100%; height: 40vw; padding: 0 5vw;">
+				<div class="flex">
+					<div class="divOnCenter flexC" style="justify-content: left; background: rgba(0,0,0,0); width: 97%; height: 90%; border: solid 0.5vw #026E2C; border-radius: 5vw;">
+						<div class="txtgreen txtsemilarge bold" style="margin: 3vw 0 1vw 0; height: 4vw;">
+							EXPLORE OUR FEATURES
+						</div>
+						<ul class="flexC" style="display: flex; list-style-type: disc; gap: 0.5vw;">
+							<li class="flexR" style=" height: auto;">
+								<div class="divOnCenter" style="padding: 0 3vw;">
+									<span class="green" style="display: inline-block; width: 0.6vw; height: 0.6vw; border-radius: 50%; margin: 0.6vw 0.5vw;"></span>
+									<span class="txtgreen txtsemimedium bold" style="display: inline;" >
+										Interactive Study Tools: 
+									</span>
+										<span class="txtgreen txtsemimedium semibold" style="display: inline;" >
+											Engage with dynamic flashcards, quizzes, and simulations to reinforce learning.
+										</span>
+								</div>
+							</li>
+							<li class="flexR" style="height: auto;">
+								<div class="divOnCenter" style="padding: 0 3vw;">
+									<span class="green" style="display: inline-block; width: 0.6vw; height: 0.6vw; border-radius: 50%; margin: 0.6vw 0.5vw;"></span>
+									<span class="txtgreen txtsemimedium bold" style="display: inline;" >
+										Progress Tracking: 
+									</span>
+										<span class="txtgreen txtsemimedium semibold" style="display: inline;" >
+											Monitor your academic journey with personalized dashboards and analytics.
+										</span>
+								</div>
+							</li>
+							<li class="flexR" style="height: auto;">
+								<div class="divOnCenter" style="padding: 0 3vw;">
+									<span class="green" style="display: inline-block; width: 0.6vw; height: 0.6vw; border-radius: 50%; margin: 0.6vw 0.5vw;"></span>
+									<span class="txtgreen txtsemimedium bold" style="display: inline;" >
+										Curriculum-Aligned Content: 
+									</span>
+										<span class="txtgreen txtsemimedium semibold" style="display: inline;" >
+											Access materials tailored to your nursing program's requirements.
+										</span>
+								</div>
+							</li>
+							<li class="flexR" style="margin-bottom:  3vw; height: auto;">
+								<div class="divOnCenter" style="padding: 0 3vw;">
+									<span class="green" style="display: inline-block; width: 0.6vw; height: 0.6vw; border-radius: 50%; margin: 0.6vw 0.5vw;"></span>
+									<span class="txtgreen txtsemimedium bold" style="display: inline;" >
+										Resource Library: 
+									</span>
+										<span class="txtgreen txtsemimedium semibold" style="display: inline;" >
+											Utilize a vast collection of lecture notes, topic reviewers, and case studies.
+										</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="flex" style="flex: 0.8">
+					<div class="divOnCenter flexC" style="justify-content: left; background: rgba(0,0,0,0); width: 97%; height: 90%; border: solid 0.5vw #026E2C; border-radius: 5vw;">
+						<div class="txtgreen txtsemilarge bold" style="margin: 3vw 0 1vw 0; height: 4vw;">
+							WHY CHOOSE NURSYNC
+						</div>
+						<ul class="flexC" style="display: flex; list-style-type: disc; gap: 0.5vw;">
+							<li class="flexR" style=" height: auto;">
+								<div class="divOnCenter" style="padding: 0 3vw;">
+									<span class="green" style="display: inline-block; width: 0.6vw; height: 0.6vw; border-radius: 50%; margin: 0.6vw 0.5vw;"></span>
+									<span class="txtgreen txtsemimedium bold" style="display: inline;" >
+										Empowerment: 
+									</span>
+										<span class="txtgreen txtsemimedium semibold" style="display: inline; " >
+											Develop self-efficacy and clinical decision-making skills through structured learning.
+										</span>
+								</div>
+							</li>
+							<li class="flexR" style="height: auto;">
+								<div class="divOnCenter" style="padding: 0 3vw;">
+									<span class="green" style="display: inline-block; width: 0.6vw; height: 0.6vw; border-radius: 50%; margin: 0.6vw 0.5vw;"></span>
+									<span class="txtgreen txtsemimedium bold" style="display: inline;" >
+										Flexibility: 
+									</span>
+										<span class="txtgreen txtsemimedium semibold" style="display: inline;" >
+											Learn at your own pace with 24/7 access to resources.
+										</span>
+								</div>
+							</li>
+							<li class="flexR" style="margin-bottom:  3vw; height: auto;">
+								<div class="divOnCenter" style="padding: 0 3vw;">
+									<span class="green" style="display: inline-block; width: 0.6vw; height: 0.6vw; border-radius: 50%; margin: 0.6vw 0.5vw;"></span>
+									<span class="txtgreen txtsemimedium bold" style="display: inline;" >
+										Community Support: 
+									</span>
+										<span class="txtgreen txtsemimedium semibold" style="display: inline;" >
+											Join a network of nursing students and professionals for collaboration and guidance.
+										</span>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="flexC" style="height: 13vw; padding-bottom: 5vw;">
+				<div class="divOnCenter flexC" style="background: rgba(0,0,0,0); width: 89%; height: 100%; border: solid 0.5vw #026E2C; border-radius: 3vw; padding: auto;">
+					<div class="divOnCenter txtgreen semibold txtmedium">
+						Don't have an Account? <a href="./signup" class="txtgreen bold underline txtsemilarge"> Join Us </a>
+						| Have an Account? <a href="./login" class="txtgreen bold underline txtsemilarge"> Log in </a>
+					</div>
+				</div>
+			</div>
+			<div class="flexC green" style="width: 100vw; height: auto; padding: 5vw 0; margin: 0; background: #008040;">
+				<!-- Logo or Title -->
+				<div class="flex" style="color: white; justify-content: left; padding-left: 6vw; font-size: 4.5vw; font-weight: bold;">
+					NurSYNC
+				</div>
+
+				<!-- Optional Links -->
+				<div class="flex" style="justify-content: left; padding-left: 6vw; margin-top: 3vw;">
+					<a href="./signup" style="color: #ffffff; text-decoration: underline; margin-right: 5vw;">Signup</a>
+					<a href="./login" style="color: #ffffff; text-decoration: underline; margin-right: 5vw;">Login</a>
+
+					<a style="color: #ffffff; text-decoration: underline;" href="https://mail.google.com/mail/?view=cm&fs=1&to=your-email@gmail.com&su=Subject%20Here&body=Message%20Body%20Here" target="_blank">Send me a message</a>
+				</div>
+
+				<!-- Line -->
+				<hr style="border: 0.2px solid #CCCCCC; width: 90%; margin-top: 5vw;"/>
+
+				<!-- Extra Info: Company Address or Slogan -->
+				<div class="flex" style="color: #dddddd; justify-content: left; padding-left: 6vw; font-size: 2.6vw; margin-top: 2vw;">
+					Philippines
+				</div>
+
+				<!-- Copyright -->
+				<div class="flex" style="color: #dddddd; justify-content: left; padding-left: 6vw; font-size: 2.6vw; margin-top: 2vw;">
+					&#169; 2025 NurSYNC
+				</div>
+			</div>
+		</div>
+
+		<!-- Chat Button -->
+		<div class="txtsmall" onClick="toggleChat();"  style="padding: 0 1vw; background: white; border-radius: 3vw; display: flex; justify-content: center; align-items: center; position: fixed; bottom: 3vw; right: 3vw;">
+			Chat NurSYNC AI <img class="small circle" style="background: white; border: solid white 0.3vw; border-radius: 2vw;" src="bot.png">
+		</div>
+		<!-- Chat Window -->
+		<div id="chatBox" style="padding-top: 4vw; position: fixed; bottom: 7vw; right: 2vw; width: 33vw; height: 40vw; background-color: #fff; border: 0.5vw solid #ccc; border-radius: 2vw; display: none; flex-direction: column; z-index: 10;">
+			<div id="chatBoxHeader txtsmall" style="position: absolute; margin-bottom: 37vw; height: 4vw; background-color: #007bff; color: white; padding: 1vw 2vw; border-radius: 1vw; text-align: center;">
+				NurSYNC AI
+			</div>
+			<div id="chatArea" style="flex-grow: 1; padding: 1vw; overflow-y: auto; border-bottom: 0.5vw solid #ccc; width: 100%;">
+				<!-- Chat messages will be appended here -->
+			</div>
+			<input type="text" id="userInput" placeholder="Type a message..." style="font-size: 2vw; width: 84%; padding: 1vw; border: none; border-radius: 1vw; " onkeydown="if(event.key === 'Enter'){sendMessage()}">
+		</div>
+
+		<!-- JavaScript for toggling the chat window and sending messages -->
+		<script>
+			function toggleChat() {
+				const chatBox = document.getElementById("chatBox");
+				chatBox.style.display = chatBox.style.display === "none" ? "flex" : "none";
+			}
+
+			async function sendMessage() {
+				const userInput = document.getElementById("userInput");
+				const messageText = userInput.value.trim();
+				if (messageText === "") return;
+
+				// Append user message
+				appendMessage(messageText, 'user');
+
+				// Clear the input field
+				userInput.value = "";
+
+				// Send the prompt to the server and get the response
+				try {
+					const response = await fetch('https://nursync.onrender.com/api/bot', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({ prompt: messageText }),
+					});
+					const data = await response.json();
+					appendMessage(data.msg, 'bot');
+				} catch (error) {
+					appendMessage("Error: Unable to get response from AI", 'bot');
+				}
+			}
+
+			function appendMessage(message, sender) {
+				const chatArea = document.getElementById("chatArea");
+				const messageDiv = document.createElement("div");
+				messageDiv.className = sender === 'user' ? 'userMessage' : 'botMessage';
+				chatArea.appendChild(messageDiv);
+
+				if (sender === 'bot') {
+					let i = 0;
+					const interval = setInterval(() => {
+						if (i < message.length) {
+							messageDiv.textContent += message.charAt(i);
+							i++;
+							chatArea.scrollTop = chatArea.scrollHeight;
+						} else {
+							clearInterval(interval);
+						}
+					}, 37);
+				} else {
+					messageDiv.textContent = message;
+					chatArea.scrollTop = chatArea.scrollHeight;
+				}
+			}
+		</script>
+
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<!-- Then your own script -->
+		<script>
+			function nav(page) {
+				window.location.href = page;
+			}
+			$(document).ready(function() {
+				const all = $('body');
+				if (localStorage.getItem('token')) {
+					all.hide();
+					nav('/learninghub');
+				} else {
+					
+				}
+			});
+		</script>
+	</body>
+</html>
