@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 export default function HomePage() {
+  const apiWebServer = process.env.NEXT_PUBLIC_API_WEB_SERVER;
   const router = useRouter();
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
   const [chatOpen, setChatOpen] = useState(false);
@@ -37,7 +38,7 @@ export default function HomePage() {
     setInput("");
 
     try {
-      const res = await fetch("https://nursync.onrender.com/api/bot", {
+      const res = await fetch(`${apiWebServer}/api/bot`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: userMessage }),
@@ -49,28 +50,45 @@ export default function HomePage() {
     }
   };
 
-  // Bot typing effect
-  const typeWriterEffect = (message: string) => {
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i < message.length) {
-        setMessages((prev) => {
-          const last = prev[prev.length - 1];
-          if (last && last.sender === "bot") {
-            return [...prev.slice(0, -1), { sender: "bot", text: last.text + message[i] }];
-          } else {
-            return [...prev, { sender: "bot", text: message[i] }];
-          }
-        });
-        i++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 37);
-  };
+  // A reference to the chat container element (you need to get this from your JSX)
+const chatContainerRef = useRef<HTMLDivElement>(null);
+
+const typeWriterEffect = (message: string) => {
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < message.length) {
+      setMessages((prev) => {
+        const last = prev[prev.length - 1];
+        
+        // This is the key fix for the first letter issue
+        if (last && last.sender === "bot" && last.text !== "") {
+          return [...prev.slice(0, -1), { sender: "bot", text: last.text + message[i] }];
+        } else {
+          // This handles the first character correctly or if the last message isn't from the bot
+          return [...prev, { sender: "bot", text: message[i] }];
+        }
+      });
+      i++;
+      // The ref is now explicitly typed as an HTMLDivElement or null
+
+
+// You must also check that the ref exists before using it
+if (chatContainerRef.current) {
+  chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+}
+
+      
+    } else {
+      clearInterval(interval);
+    }
+  }, 37);
+};
 
   return (
-    <div id="ratio16_9">
+    <div id="ratio16_9"
+    style={{
+      background: 'white',
+    }}>
       {/* Custom Alert */}
       {alertMessage && (
         <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] bg-white rounded-lg shadow-lg z-50">
@@ -90,8 +108,8 @@ export default function HomePage() {
       )}
 
       {/* Header */}
-      <div className="fixed flex h-[12vw] top-[-1.2vw] left-[5vw]">
-        <div className="w-[10vw] mt-[2vw]">
+      <div className="fixed z-2 flex h-[12vw] top-[-1.2vw] left-[5vw]">
+        <div className="w-[7vw] mt-[2vw] ">
           <img
             className="rounded-full"
             style={{ background: "white", border: "0.3vw solid white" }}
@@ -104,7 +122,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div id="header" className="bg-green-700 flex justify-end p-4">
+      <div id="header" className="top-0 fixed bg-green-700 w-full flex justify-end p-4">
         <button
           className="bg-white px-4 py-2 rounded-md text-green-700 font-semibold"
           onClick={() => router.push("/signup")}
@@ -115,7 +133,7 @@ export default function HomePage() {
 
       {/* Hero */}
       <div className="mt-[3%] w-full h-[51vw] bg-white">
-        <img className="h-[99%] m-0" src="/homepage.png" alt="homepage" />
+        <img className="h-[99%] w-full m-0" src="/homepage.png" alt="homepage" />
       </div>
 
       {/* Features */}
@@ -181,7 +199,7 @@ export default function HomePage() {
       {/* Chat Button */}
       <div
         onClick={toggleChat}
-        className="fixed bottom-[3vw] right-[3vw] px-4 py-2 bg-white rounded-[3vw] flex items-center cursor-pointer shadow-md"
+        className="fixed text-black bottom-[3vw] right-[3vw] px-4 py-2 bg-white rounded-[3vw] flex items-center cursor-pointer shadow-md"
       >
         Chat NurSYNC AI
         <img
@@ -193,14 +211,14 @@ export default function HomePage() {
 
       {/* Chat Box */}
       {chatOpen && (
-        <div className="fixed bottom-[7vw] right-[2vw] w-[33vw] h-[40vw] bg-white border-4 border-gray-300 rounded-[2vw] flex flex-col z-50">
-          <div className="bg-blue-500 text-white p-2 rounded-t-lg">NurSYNC AI</div>
+        <div className="fixed text-black bottom-[7vw] right-[2vw] w-[33vw] h-[40vw] bg-white border-4 border-gray-300 rounded-[2vw] flex flex-col z-50">
+          <div className="bg-green-700 text-white p-2 rounded-t-3xl">NurSYNC AI</div>
           <div className="flex-grow p-2 overflow-y-auto border-b-4 border-gray-300">
             {messages.map((m, i) => (
               <div
                 key={i}
                 className={`my-1 p-2 rounded-lg ${
-                  m.sender === "user" ? "bg-green-100 text-right" : "bg-gray-200 text-left"
+                  m.sender === "user" ? "text-right" : "bg-gray-200 text-left"
                 }`}
               >
                 {m.text}
